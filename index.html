@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유한나 (Hannah Yu) | Clinical Genomics Scientist</title>
+<style>
+  :root {
+    --accent: #3b5bfd;
+    --accent-dark: #2a44d6;
+    --accent-soft: #eef1ff;
+    --bg: #ffffff;
+    --bg-alt: #f7f8fb;
+    --text: #1b1d24;
+    --text-muted: #666b80;
+    --border: #e6e8ef;
+    --card-bg: #ffffff;
+    --placeholder: #9aa0b8;
+    --placeholder-bg: #f1f2f7;
+    --shadow: 0 4px 20px rgba(20, 22, 42, 0.06);
+    --shadow-lg: 0 20px 60px rgba(20, 22, 42, 0.18);
+  }
+
+  [data-theme="dark"] {
+    --bg: #0f1019;
+    --bg-alt: #14162a;
+    --text: #eef0fb;
+    --text-muted: #9498b8;
+    --border: #262946;
+    --card-bg: #181a30;
+    --placeholder: #6b7093;
+    --placeholder-bg: #1e2038;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.55);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 26px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+  }
+  .icon-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+  .hamburger {
+    display: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hamburger span {
+    width: 18px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 32px 20px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  /* ---------- Placeholder ---------- */
+  .placeholder {
+    color: var(--placeholder);
+    background: var(--placeholder-bg);
+    border: 1px dashed var(--placeholder);
+    border-radius: 6px;
+    padding: 1px 8px;
+    font-size: 0.88em;
+    font-style: normal;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  /* ---------- Hero ---------- */
+  section.hero {
+    padding: 168px 0 96px;
+    text-align: center;
+    background: radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 60%);
+  }
+  [data-theme="dark"] section.hero {
+    background: radial-gradient(circle at 50% 0%, rgba(59,91,253,0.12), transparent 60%);
+  }
+
+  .avatar-hero {
+    width: 176px;
+    height: 176px;
+    border-radius: 50%;
+    margin: 0 auto 28px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    border: 3px solid var(--card-bg);
+  }
+  .avatar-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(20px, 3.24vw, 30px);
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+  .hero h1 .role-tag {
+    font-size: 0.55em;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    margin-top: 8px;
+  }
+
+  .hero .message {
+    font-size: 16.5px;
+    color: var(--text-muted);
+    max-width: 760px;
+    margin: 0 auto 36px;
+    text-wrap: balance;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 13px 24px;
+    border-radius: 10px;
+    font-size: 14.5px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+  }
+  .btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .btn.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .btn.primary:hover { background: var(--accent-dark); }
+
+  .btn.small { padding: 9px 16px; font-size: 13px; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 96px 0; scroll-margin-top: 80px; }
+  section:nth-of-type(even) { background: var(--bg-alt); }
+
+  .section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 52px;
+  }
+  .section-head h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .section-head p { color: var(--text-muted); font-size: 15px; }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .about-text p { color: var(--text-muted); margin-bottom: 14px; font-size: 15px; }
+  .about-facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .fact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+  }
+  .fact-card .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .fact-card .value { font-size: 14.5px; font-weight: 700; line-height: 1.45; }
+
+  /* Skills */
+  .skill-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+  }
+  .skill-group {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .skill-group h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-size: 12.5px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  [data-theme="dark"] .skill-tag { background: rgba(59,91,253,0.15); }
+
+  /* Projects */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+  }
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  .project-thumb {
+    min-height: 90px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent-soft), var(--bg-alt));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+    padding: 16px;
+  }
+  [data-theme="dark"] .project-thumb { background: linear-gradient(135deg, rgba(59,91,253,0.15), var(--bg-alt)); }
+  .project-card h3 { font-size: 17.5px; font-weight: 700; text-align: center; }
+  .project-card .desc { font-size: 14px; color: var(--text-muted); flex: 1; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-chip {
+    font-size: 11.5px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .project-more {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  /* Career / Education */
+  .timeline-subtitle {
+    font-size: 15px;
+    font-weight: 800;
+    margin: 40px 0 18px;
+    color: var(--accent);
+  }
+  .timeline-subtitle:first-child { margin-top: 0; }
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .timeline-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow);
+  }
+  .timeline-item .role { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .timeline-item .role a { color: var(--accent); }
+  .timeline-item .role a:hover { text-decoration: underline; }
+  .timeline-item .period { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+  .timeline-item .achievements {
+    padding-left: 18px;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+  .timeline-item .achievements li { margin-bottom: 6px; list-style: disc; }
+
+  /* Publications tabs */
+  .tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .tab-btn {
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .pub-group-title {
+    font-size: 14.5px;
+    font-weight: 800;
+    margin: 30px 0 14px;
+    color: var(--text);
+  }
+  .pub-group-title:first-child { margin-top: 0; }
+  .pub-list { display: flex; flex-direction: column; gap: 12px; }
+  .pub-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    font-size: 13.8px;
+  }
+  .pub-item .pub-title { color: var(--text); margin-bottom: 5px; }
+  .pub-item .pub-meta { font-size: 12.5px; color: var(--text-muted); }
+  .pub-item a { color: var(--accent); font-weight: 700; }
+  .if-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-left: 6px;
+  }
+  [data-theme="dark"] .if-badge { background: rgba(59,91,253,0.15); }
+
+  /* Contact */
+  .contact-section { text-align: center; }
+  .contact-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .resume-note {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 14px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 36px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 20, 0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 200;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: var(--card-bg);
+    border-radius: 20px;
+    max-width: 580px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 36px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .modal-overlay.open .modal-box {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-alt);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .modal-close:hover { border-color: var(--accent); }
+
+  .modal-box h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; padding-right: 40px; }
+  .modal-box .modal-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+  .modal-box .modal-section-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin: 20px 0 10px;
+  }
+  .modal-box p { font-size: 14.5px; color: var(--text-muted); }
+  .modal-box ul { padding-left: 18px; }
+  .modal-box ul li { list-style: disc; font-size: 14.5px; color: var(--text-muted); margin-bottom: 6px; }
+  .modal-box a { color: var(--accent); font-weight: 700; }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Mobile */
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-facts { grid-template-columns: 1fr 1fr; }
+    section { padding: 64px 0; }
+    section.hero { padding: 140px 0 64px; }
+    .wrap { padding: 0 20px; }
+    .nav-inner { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">Hannah Yu</a>
+    <nav class="nav-links">
+      <a href="#about">소개</a>
+      <a href="#skills">기술 역량</a>
+      <a href="#projects">대표 연구</a>
+      <a href="#career">경력·학력</a>
+      <a href="#publications">논문·특허</a>
+      <a href="#training">교육·자격</a>
+      <a href="#contact">연락처</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" type="button" title="테마 전환">🌙</button>
+      <button class="hamburger" id="hamburger" type="button" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">소개</a>
+    <a href="#skills">기술 역량</a>
+    <a href="#projects">대표 연구</a>
+    <a href="#career">경력·학력</a>
+    <a href="#publications">논문·특허</a>
+    <a href="#training">교육·자격</a>
+    <a href="#contact">연락처</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="avatar-hero"><img src="assets/profile.png" alt="유한나 (Hannah Yu) 프로필 사진"></div>
+    <div class="eyebrow">Portfolio</div>
+    <h1>유한나 (Hannah Yu)<span class="role-tag">Clinical Genomics Scientist</span></h1>
+    <p class="message">임상 유전체 분석과 중개 연구 분야에서 10년 이상의 연구 경험을 보유한 연구자입니다. WES·WGS 기반 변이 해석과 임상 보고서 작성부터 Oxford Nanopore 기반 초고정확도 시퀀싱 기술 개발(Advanced Science, IF 14.5 제1저자)까지, 연구와 임상을 연결하는 중개 연구 역량을 갖추고 있습니다.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn primary">대표 연구 보기</a>
+      <a href="#contact" class="btn">연락하기</a>
+      <a href="assets/유한나_국문이력서_2026.pdf" class="btn" download>📄 국문 이력서</a>
+      <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn" download>📄 English CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">About</div>
+      <h2>소개</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>삼성서울병원에서는 암 환자 검체 기반 WES 및 RNA sequencing을 수행하며 임상 연구와 NGS workflow를 경험하였고, 쓰리빌리언에서는 임상 유전 과학자로서 WES/WGS 기반 변이 해석, 임상 보고서 작성 및 의료진과의 협업을 통해 희귀질환 진단을 지원하였습니다.</p>
+        <p>미국 오하이오주립대학교에서는 Oxford Nanopore 기반 high-fidelity sequencing 기술을 개발하여 Advanced Science(IF 14.5) 제1저자 논문을 발표하였으며, 글로벌 공동연구 및 기술 개발 경험을 보유하고 있습니다.</p>
+        <p>NGS 실험, 유전체 분석, 분자생물학, 임상 유전체 해석을 아우르는 전문성을 바탕으로 연구와 임상을 연결하는 중개 연구 역량을 갖추고 있습니다.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact-card">
+          <div class="label">학위</div>
+          <div class="value">이학박사<br>생물분석과학과 (UST)</div>
+        </div>
+        <div class="fact-card">
+          <div class="label">경력</div>
+          <div class="value">10년 이상<br>임상유전체 · NGS · 중개연구</div>
+        </div>
+        <div class="fact-card">
+          <div class="label">대표 성과</div>
+          <div class="value">Advanced Science<br>(IF 14.5) 제1저자</div>
+        </div>
+        <div class="fact-card">
+          <div class="label">전문 분야</div>
+          <div class="value">WES/WGS 변이해석<br>Nanopore 시퀀싱</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Skills</div>
+      <h2>기술 역량</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>Sequencing &amp; Genomics</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">WES / WGS</span>
+          <span class="skill-tag">RNA-seq</span>
+          <span class="skill-tag">Oxford Nanopore</span>
+          <span class="skill-tag">Illumina MiSeq</span>
+          <span class="skill-tag">NovaSeq X Plus</span>
+          <span class="skill-tag">AVITI24</span>
+          <span class="skill-tag">Metagenome 분석</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Clinical &amp; Bioinformatics</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">WES/WGS 변이 해석</span>
+          <span class="skill-tag">임상 보고서 작성</span>
+          <span class="skill-tag">희귀질환 진단 지원</span>
+          <span class="skill-tag">AI 기반 문헌조사</span>
+          <span class="skill-tag">유전상담팀 협업</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Molecular Biology</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Cloning</span>
+          <span class="skill-tag">Site-directed mutagenesis</span>
+          <span class="skill-tag">qPCR / dPCR</span>
+          <span class="skill-tag">HRM</span>
+          <span class="skill-tag">Bisulfite conversion</span>
+          <span class="skill-tag">In vitro methylation</span>
+          <span class="skill-tag">NGS library prep</span>
+          <span class="skill-tag">CRISPR/Cas9</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Instrumentation</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">CE (모세관 전기영동)</span>
+          <span class="skill-tag">MALDI-TOF</span>
+          <span class="skill-tag">FACS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Featured Research</div>
+      <h2>대표 연구</h2>
+      <p>카드를 클릭하면 상세 내용을 볼 수 있습니다.</p>
+    </div>
+    <div class="project-grid" id="projectGrid"></div>
+  </div>
+</section>
+
+<!-- ================= CAREER / EDUCATION ================= -->
+<section id="career">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Career &amp; Education</div>
+      <h2>경력 · 학력</h2>
+    </div>
+
+    <div class="timeline-subtitle">경력 (Career)</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="role"><a href="https://3billion.io/" target="_blank" rel="noopener">쓰리빌리언</a> · 임상 유전 과학자</div>
+        <div class="period">2025.11 – 2026.02</div>
+        <ul class="achievements">
+          <li>유전체 검사(WES/WGS)의 변이 해석 및 보고서 작성</li>
+          <li>AI를 활용하여 희귀질환 관련 유전자 및 변이에 대한 문헌 조사 및 임상적 해석</li>
+          <li>의료진 및 유전상담팀과의 커뮤니케이션을 통한 증상-유전정보 통합 분석</li>
+          <li>유전진단 인공지능 모델 고도화 연구 (AI engineer, bioinformatics 전문가들과 공동 연구)</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role"><a href="http://www.samsunghospital.com/home/future/rnd/innovation/current.do" target="_blank" rel="noopener">삼성서울병원</a> · 박사 연구원</div>
+        <div class="period">2025.03 – 2025.09</div>
+        <ul class="achievements">
+          <li>암 환자 샘플 기반 유전체 시퀀싱 실험 설계 및 수행</li>
+          <li>임상 시료에서 핵산 추출, 품질 평가, 시퀀싱 라이브러리 제작</li>
+          <li>NovaSeq X Plus 및 AVITI24 플랫폼을 활용한 WES 및 전사체 시퀀싱 수행</li>
+          <li>생물정보학팀과 협업하여 데이터 처리, 분석 및 해석 진행</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role"><a href="https://ridd.pusan.ac.kr/ridd/index..do" target="_blank" rel="noopener">부산대학교</a> · 박사 연구원</div>
+        <div class="period">2024.09 – 2025.01</div>
+        <ul class="achievements">
+          <li>국가중앙인체자원은행에서 1,017건의 혈액 및 조직 자원을 제공받아 DNA 제작 및 QC 수행</li>
+          <li>국립보건연구원 세균질환과에서 제공받은 6종 결핵균 균주의 전장 유전체 시퀀싱 수행 및 데이터 분석</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role"><a href="https://vet.osu.edu/research/center-retrovirus-research" target="_blank" rel="noopener">오하이오주립대학교</a> · 박사후 연구원</div>
+        <div class="period">2016.04 – 2024.07</div>
+        <ul class="achievements">
+          <li>Oxford Nanopore 기반의 high-fidelity, long-range single-molecule sequencing 기법 개발</li>
+          <li>Circular long-read DNA constructs 및 twin random barcode 생성 기술 개발</li>
+          <li>개발한 기술을 활용한 환자 및 폐수 내 SARS-CoV-2 변이 검출 및 모니터링</li>
+          <li>새로운 해양 RNA 바이러스 발견</li>
+          <li>항레트로바이러스제(ART) 처리된 HIV-1 변이 프로파일링, HIV-1 변이체 in vitro 선별</li>
+          <li>CRISPR/Cas9 기반 유전체 편집</li>
+          <li>HIV-1 RNA 유전체 수준의 후성유전학적 변형 패턴 규명</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role"><a href="https://www.ust.ac.kr/prog/major/kor/sub03_03_01/campusMajor.do" target="_blank" rel="noopener">과학기술연합대학원대학교(UST)</a>/<a href="https://www.kriss.re.kr/departmentWeb/department2deptsView.es?mid=a11003010100&kd2_code=1000028" target="_blank" rel="noopener">한국표준과학연구원(KRISS)</a> 캠퍼스 · 박사과정 연구원</div>
+        <div class="period">2010.09 – 2016.02</div>
+        <ul class="achievements">
+          <li>유전자 계량을 위한 기준 측정법 설계 및 검증</li>
+          <li>dNMP/NMP, human genomic DNA, miRNA, gene methylation, 16S rDNA 등 인증표준물질(CRM) 개발</li>
+          <li>NGS 기반 실험 전략 수립 및 샘플 라이브러리 제작/시퀀싱 수행 (Illumina MiSeq)</li>
+          <li>첨단 분석 장비 운용: NGS(DNA 메틸화·전사체·metagenome 분석), CE(DNA 메틸화, dNMP/NMP 분석, 핵산 정량), MALDI-TOF(단백질 identification, genotyping), FACS(세포 분류, 단일 세포 분석)</li>
+          <li>분자생물학 연구기술 숙련: cloning, site-directed mutagenesis, qPCR/dPCR, HRM, bisulfite conversion, in vitro methylation, NGS library preparation</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role"><a href="https://biology.cnu.ac.kr/biology/professor/professor.do?mode=view&key=LZStrEwBhEZzcGYg%20&pager.offset=0&pagerLimit=10" target="_blank" rel="noopener">충남대학교</a> · 석사과정 연구원</div>
+        <div class="period">2007 – 2008</div>
+        <ul class="achievements">
+          <li>제브라피쉬 사육 및 관리</li>
+          <li>microinjection 및 whole-mount in situ hybridization 수행</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-subtitle">학력 (Education)</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="role"><a href="https://www.ust.ac.kr/prog/major/kor/sub03_03_01/campusMajor.do" target="_blank" rel="noopener">과학기술연합대학원대학교(UST)</a> 생물분석과학과 · 이학박사</div>
+        <div class="period">2010 – 2016</div>
+        <ul class="achievements">
+          <li>학위논문: 유전자 계량을 위한 기준 측정 방법 개발 — 유전자 메틸화, 유전자 발현, 세균 군집 프로파일링</li>
+          <li>지도교수: 양인철 교수</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role"><a href="https://www.kriss.re.kr/departmentWeb/department2deptsView.es?mid=a11003010100&kd2_code=1000028" target="_blank" rel="noopener">한국표준과학연구원</a> 생물분석센터 · 인턴십</div>
+        <div class="period">2009 – 2010</div>
+        <ul class="achievements">
+          <li>지도교수: 양인철 교수</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role"><a href="https://biology.cnu.ac.kr/biology/professor/professor.do?mode=view&key=LZStrEwBhEZzcGYg%20&pager.offset=0&pagerLimit=10" target="_blank" rel="noopener">충남대학교</a> 과학교육학과(생물전공) · 이학석사</div>
+        <div class="period">2006 – 2008</div>
+        <ul class="achievements">
+          <li>학위논문: 제브라피쉬에서 Farnesoid X Receptor (fxr) 유전자 분리</li>
+          <li>지도교수: 김철희 교수</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role"><a href="https://www.handong.edu/kor/major/college/life-science/intro/" target="_blank" rel="noopener">한동대학교</a> 생명과학과 · 이학사</div>
+        <div class="period">2001 – 2006</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLICATIONS / PATENTS / FUNDING / CONFERENCE ================= -->
+<section id="publications">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Research Output</div>
+      <h2>논문 · 특허 · 연구실적</h2>
+    </div>
+
+    <div class="tabs" id="pubTabs">
+      <button class="tab-btn active" data-tab="pubs">논문 (18)</button>
+      <button class="tab-btn" data-tab="patents">특허 (5)</button>
+      <button class="tab-btn" data-tab="funding">연구비</button>
+      <button class="tab-btn" data-tab="conf">학회</button>
+    </div>
+
+    <!-- Publications -->
+    <div class="tab-panel active" id="tab-pubs">
+      <div class="pub-group-title">Published (peer-reviewed)</div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-title"><strong>Yu H</strong>, Golconda S, Xue D, Zhu M, Lee GE, Viola C, Dominguez-Huerta G, Bolduc B, Sullivan M, Kim S. CLAE: A High Fidelity Nanopore Sequencing Strategy for Read Level Viral Variant Detection and Environmental RNA Virus Discovery.</div>
+          <div class="pub-meta">Advanced Science (2025) Sep 11:305978. <a href="https://doi.org/10.1002/advs.202505978" target="_blank" rel="noopener">doi:10.1002/advs.202505978</a> · PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/40936099/" target="_blank" rel="noopener">40936099</a><span class="if-badge">IF 14.5</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Baek A, Lee GE, Golconda S, Rayhan A, Manganaris A, Chen S, Tirumuru N, <strong>Yu H</strong>, et al. Single-molecule epitranscriptomic analysis of full-length HIV-1 RNAs reveals functional roles of site-specific m6As.</div>
+          <div class="pub-meta">Nature Microbiology (2024) May;9(5):1340-1355. PMCID: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11087264/" target="_blank" rel="noopener">PMC11087264</a><span class="if-badge">IF 28.3</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Baek A, Rayhan A, Lee GE, Golconda S, <strong>Yu H</strong>, et al. Mapping m6A Sites on HIV-1 RNA Using Oligonucleotide LC-MS/MS.</div>
+          <div class="pub-meta">Methods Protoc. (2024) Jan 10;7(1). PMID: 38251200; PMCID: PMC10801558. <a href="https://doi.org/10.3390/mps7010007" target="_blank" rel="noopener">doi:10.3390/mps7010007</a><span class="if-badge">IF 2.4</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Kim S, Shukla RK, <strong>Yu H</strong>, et al. CD3e-immunotoxin spares CD62Llo Tregs and reshapes organ-specific T-cell composition by preferentially depleting CD3ehi T cells.</div>
+          <div class="pub-meta">Front Immunol. (2022); 13:1011190. PMID: 36389741; PMCID: PMC9643874. <a href="https://doi.org/10.3389/fimmu.2022.1011190" target="_blank" rel="noopener">doi:10.3389/fimmu.2022.1011190</a><span class="if-badge">IF 8.8</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Kim S, Shukla RK, Kim E, Cressman SG, <strong>Yu H</strong>, et al. Comparison of CD3e Antibody and CD3e-sZAP Immunotoxin Treatment in Mice Identifies sZAP as the Main Driver of Vascular Leakage.</div>
+          <div class="pub-meta">Biomedicines (2022), 10, 1221. <a href="https://doi.org/10.3390/biomedicines10061221" target="_blank" rel="noopener">doi:10.3390/biomedicines10061221</a><span class="if-badge">IF 6.0</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Suryawanshi GW, Khamaikawin W, Wen J, Shimizu S, Arokium H, Xie Y, Wang E, Kim S, Choi H, Zhang C, <strong>Yu H</strong>, et al. The clonal repopulation of HSPC gene modified with anti-HIV-1 RNAi is not affected by preexisting HIV-1 infection.</div>
+          <div class="pub-meta">Science Advances (2020). <a href="https://doi.org/10.1126/sciadv.aay9206" target="_blank" rel="noopener">doi:10.1126/sciadv.aay9206</a><span class="if-badge">IF 13.1</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title"><strong>Yu H</strong>, Hahn Y, Park SR, et al. Normalization of human RNA-seq experiments using chimpanzee RNA as a spike-in standard.</div>
+          <div class="pub-meta">Sci. Rep. (2016) · <a href="https://doi.org/10.1038/srep31923" target="_blank" rel="noopener">doi:10.1038/srep31923</a><span class="if-badge">IF 4.3</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title"><strong>Yu H</strong>, Hahn Y, Yang I. Reference materials for calibration of analytical biases in quantification of DNA methylation.</div>
+          <div class="pub-meta">PLOS One (2015) · <a href="https://doi.org/10.1371/journal.pone.0137006" target="_blank" rel="noopener">doi:10.1371/journal.pone.0137006</a> · PMCID: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4569303/" target="_blank" rel="noopener">PMC4569303</a><span class="if-badge">IF 3.2</span></div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Kang MJ, <strong>Yu H</strong>, Kim SK, Park SR, Yang I. Quantification of trace-level DNA by real time whole genome amplification.</div>
+          <div class="pub-meta">PLOS One (2011) · <a href="https://doi.org/10.1371/journal.pone.0028661" target="_blank" rel="noopener">doi:10.1371/journal.pone.0028661</a><span class="if-badge">IF 3.2</span></div>
+        </div>
+      </div>
+
+      <div class="pub-group-title">Submitted</div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-title">Lee GE, Golconda S, <strong>Yu H</strong>, Kim S, Kim S. "Universal RNA Linearization Enables Full-Length Nanopore DRS Across Whole Transcriptomes"</div>
+          <div class="pub-meta">Manuscript submitted</div>
+        </div>
+      </div>
+
+      <div class="pub-group-title">In preparation</div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-title"><strong>Yu H</strong>, Golconda S, Baek A, Kim S, Kim S. "Novel twin barcoding for ultra-high-accuracy, Nanopore sequencing for HIV-1 whole genome analysis"</div>
+          <div class="pub-meta">Manuscript in preparation</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title"><strong>Yu H</strong>, Golconda S, Baek A, Kim S, Kim S. "Recombination-free, long-range PCR for full-length HIV-1 DNA genotyping"</div>
+          <div class="pub-meta">Manuscript in preparation</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Kim S, <strong>Yu H</strong>, Golconda S, Reneu J, Hanel W, Kim S. "Treatment resistance of Follicular T helper cells in T-cell-targeting antibody and immunotoxin therapies"</div>
+          <div class="pub-meta">Manuscript in preparation</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Golconda S, Lee GE, <strong>Yu H</strong>, Kim S, Kim S. "Context dependent and HIV-1-specific regulation of RNA and protein expression by HIV-1's site specific m6A RNA modifications"</div>
+          <div class="pub-meta">Manuscript in preparation</div>
+        </div>
+      </div>
+
+      <div class="pub-group-title">Peer-reviewed Abstracts</div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-title"><strong>Yu H</strong>, Baek A, Golconda S, Kim S. "Novel twin barcoding for ultrahigh-accuracy, Nanopore sequencing for HIV-1 whole genome analysis."</div>
+          <div class="pub-meta">NHGRI Advanced Genomic Technology Development Meeting, 2019, Boston, MA</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title"><strong>Yu H</strong>, Baek A, Golconda S, Kim S. "Ultra-high-accuracy Nanopore target-sequencing for innovations in HIV diagnosis and surveillance."</div>
+          <div class="pub-meta">NHGRI Advanced Genomic Technology Development Meeting, 2019, Boston, MA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patents -->
+    <div class="tab-panel" id="tab-patents">
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-title">Yang I, <strong>Yu H</strong>, Yang HJ, Kim SK, Park SR. Quantitative analysis method using microorganism 16S rDNA gene having single nucleotide polymorphism.</div>
+          <div class="pub-meta">US Patent 10,253,378 (2019)</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Kim S, <strong>Yu H</strong>, Baek A. Methods of making and using tandem, twin barcode molecules.</div>
+          <div class="pub-meta">PCT/US2018/049203 (2018)</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Yang I, Kang MJ, <strong>Yu H</strong>, Park SR, Kim SK. Methods and kits for the quantification of nucleic acids.</div>
+          <div class="pub-meta">US 9,297,038 (2016)</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Yang I, <strong>Yu H</strong>, Yang H, Kim SK, Park SR. Bacterial 16s rDNA sequences with defined single nucleotide polymorphisms.</div>
+          <div class="pub-meta">PCT/KR2014/011040 (2014)</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Yang I, Kang MJ, <strong>Yu H</strong>, Park SR, Kim SK. Methods and kits for the quantification of nucleic acids.</div>
+          <div class="pub-meta">PCT/KR2011/008494 (2011)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funding -->
+    <div class="tab-panel" id="tab-funding">
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-title">"On-site, high-fidelity target sequencing and absolute quantitation for HIV-1 surveillance"</div>
+          <div class="pub-meta">NHGRI R01 (PI: Kim S) · 2018 – 2024</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">"Virus in soils: key modulators of microbiomes and nutrient cycling?"</div>
+          <div class="pub-meta">Department of Energy (PI: Sullivan M; Co-I: Kim S) · 2019 – 2023</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">"High-accuracy, long-range sequencing for HIV genotyping"</div>
+          <div class="pub-meta">NHGRI R21 (PI: Kim S) · 2018 – 2022</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conferences -->
+    <div class="tab-panel" id="tab-conf">
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-title">Advanced Genomic Technology Development Meeting, Boston, USA</div>
+          <div class="pub-meta">2019 · Short talk</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Nanopore Community Meeting, San Francisco, USA</div>
+          <div class="pub-meta">2018 · Poster</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Nanopore Community Meeting, New York, USA</div>
+          <div class="pub-meta">2016 · Poster</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-title">Nucleic Acid Summit, San Francisco, USA</div>
+          <div class="pub-meta">2013 · Poster</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRAINING / CERTIFICATION ================= -->
+<section id="training">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Continuing Education</div>
+      <h2>AI &amp; Data Science Training · Certification</h2>
+    </div>
+
+    <div class="timeline-subtitle">AI &amp; Data Science Training</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="role">AI 융합 데이터 분석 전문인력 양성과정 (WISET × AWS)</div>
+        <div class="period">2026.04 – 2026.05</div>
+        <ul class="achievements">
+          <li>Python(Google Colab) 기반 데이터 분석, 데이터 수집·전처리, API 활용</li>
+          <li>데이터 시각화 및 대시보드 구현</li>
+          <li>AWS 기반 데이터 분석 프로젝트 및 멘토링</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role">생성형 AI 전문강사 양성과정 (WISET × AWS)</div>
+        <div class="period">2026.06 – 2026.07</div>
+        <ul class="achievements">
+          <li>프롬프트 엔지니어링, RAG, MCP, Agentic AI, AI Coding Agent</li>
+          <li>AWS 기반 생성형 AI 활용</li>
+          <li>AI 교육 콘텐츠 개발 및 팀 프로젝트 수행</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="role">AI 활용 실무 훈련 (WISET × 상상력집단)</div>
+        <div class="period">2026.07 – 2026.08 (수강 중)</div>
+        <ul class="achievements">
+          <li>ChatGPT·Claude·Gemini 활용 업무 생산성 향상</li>
+          <li>Python·Colab 기반 데이터 분석, AI 업무 자동화</li>
+          <li>연구·실험 데이터 분석 프로젝트, GitHub·Notion 포트폴리오 제작</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-subtitle">Certification</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="role">데이터분석준전문가 (ADsP)</div>
+        <div class="period">2026.06.05 취득</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap contact-section">
+    <div class="section-head">
+      <div class="eyebrow">Contact</div>
+      <h2>연락 주세요</h2>
+      <p>연구·채용 관련 문의는 이메일 또는 LinkedIn으로 편하게 연락 주세요.</p>
+    </div>
+    <div class="contact-buttons">
+      <a href="mailto:yuhannah82@gmail.com" class="btn primary">📧 yuhannah82@gmail.com</a>
+      <a href="https://www.linkedin.com/in/hannah-yu-9020ab268/?skipRedirect=true" target="_blank" rel="noopener" class="btn">💼 LinkedIn</a>
+      <a href="https://github.com/hannahyu-source/portfolio" target="_blank" rel="noopener" class="btn">💻 GitHub</a>
+      <a href="https://scholar.google.com/citations?hl=ko&user=pQJStZ0AAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener" class="btn">🎓 Google Scholar</a>
+    </div>
+    <div class="contact-buttons" style="margin-top:14px;">
+      <a href="assets/유한나_국문이력서_2026.pdf" class="btn small" download>📄 국문 이력서 다운로드</a>
+      <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn small" download>📄 English CV 다운로드</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  유한나 (Hannah Yu) &middot; 2026
+</footer>
+
+<!-- ================= PROJECT MODAL ================= -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" type="button">✕</button>
+    <h3 id="modalTitle"></h3>
+    <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-section-title">개요</div>
+    <p id="modalDesc"></p>
+    <div class="modal-section-title">기술 스택</div>
+    <div class="project-stack" id="modalStack"></div>
+    <div class="modal-section-title">주요 성과</div>
+    <ul id="modalAchievements"></ul>
+    <div class="modal-section-title">관련 링크</div>
+    <p id="modalLink"></p>
+  </div>
+</div>
+
+<script>
+  // ---------- Theme toggle ----------
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('portfolio-theme', theme);
+  }
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(localStorage.getItem('portfolio-theme') || (prefersDark ? 'dark' : 'light'));
+  themeToggle.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // ---------- Mobile menu ----------
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }));
+
+  // ---------- Publications tabs ----------
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ---------- Project data ----------
+  const projects = [
+    {
+      title: 'CLAE: High-Fidelity Nanopore Sequencing',
+      period: '오하이오주립대학교 · 2016.04 – 2024.07',
+      thumb: 'Advanced Science 2025<br>제1저자',
+      desc: 'Oxford Nanopore 기반 circular long-read DNA construct와 twin random barcode 생성 기술을 개발하여, read 단위의 초고정확도 바이러스 변이 검출과 환경 RNA 바이러스 발굴을 가능하게 한 시퀀싱 전략(CLAE)입니다. Advanced Science(IF 14.5)에 제1저자로 게재되었습니다.',
+      stack: ['Oxford Nanopore', 'Long-read sequencing', 'Twin barcoding', 'Bioinformatics'],
+      achievements: [
+        '환자 및 폐수 시료 내 SARS-CoV-2 변이 검출 및 모니터링',
+        '신규 해양 RNA 바이러스 발견',
+        '항레트로바이러스제(ART) 처리 HIV-1 변이 프로파일링',
+        'Advanced Science (IF 14.5) 제1저자 논문 게재'
+      ],
+      linkHtml: '<a href="https://doi.org/10.1002/advs.202505978" target="_blank" rel="noopener">doi:10.1002/advs.202505978</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40936099/" target="_blank" rel="noopener">PubMed</a>'
+    },
+    {
+      title: '임상 유전체 변이 해석<br>& AI 진단 모델 고도화',
+      period: '쓰리빌리언 · 2025.11 – 2026.02',
+      thumb: '희귀질환 진단 지원',
+      desc: 'WES/WGS 기반 유전체 검사 결과의 변이 해석 및 임상 보고서를 작성하고, AI를 활용해 희귀질환 관련 유전자·변이에 대한 문헌 조사와 임상적 해석을 수행했습니다. 의료진 및 유전상담팀과 협업하여 증상-유전정보 통합 분석을 진행하고, AI 엔지니어·생물정보학 전문가와 함께 유전진단 인공지능 모델 고도화 연구에 참여했습니다.',
+      stack: ['WES/WGS 변이 해석', '임상 보고서 작성', 'AI 문헌조사', '유전상담 협업'],
+      achievements: [
+        '희귀질환 관련 유전자·변이의 임상적 해석 및 보고서 작성',
+        '의료진·유전상담팀과의 증상-유전정보 통합 분석',
+        'AI engineer, bioinformatics 전문가와 공동으로 유전진단 AI 모델 고도화 연구 수행'
+      ],
+      linkHtml: '<a href="https://3billion.io/" target="_blank" rel="noopener">쓰리빌리언 (3billion) 공식 웹사이트</a> · <span class="placeholder">프로젝트 상세는 비공개 사내 자료</span>'
+    },
+    {
+      title: '유전자 계량 인증표준물질(CRM)<br>개발',
+      period: 'UST / 한국표준과학연구원 · 2010.09 – 2016.02',
+      thumb: '박사학위 연구 · 특허 5건',
+      desc: '유전자 계량을 위한 기준 측정 방법을 개발한 박사학위 연구로, dNMP/NMP, human genomic DNA, miRNA, gene methylation, 16S rDNA 등 다양한 인증표준물질(CRM)을 개발했습니다. qPCR/dPCR, CE, bisulfite conversion 등 정량 분석 기술을 활용해 유전자 메틸화·발현·세균 군집 프로파일링의 기준 측정법을 설계하고 검증했습니다.',
+      stack: ['qPCR / dPCR', 'CE', 'Bisulfite conversion', 'NGS library prep', 'HRM'],
+      achievements: [
+        '5건의 관련 특허 등록 (US, PCT)',
+        'PLOS One, Scientific Reports 등 논문 3편 게재',
+        '16S rDNA, DNA 메틸화, miRNA 등 CRM 다수 개발'
+      ],
+      linkHtml: '<a href="https://doi.org/10.1371/journal.pone.0137006" target="_blank" rel="noopener">doi:10.1371/journal.pone.0137006</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4569303/" target="_blank" rel="noopener">PMC4569303</a>'
+    }
+  ];
+
+  const projectGrid = document.getElementById('projectGrid');
+  projects.forEach((p, idx) => {
+    const card = document.createElement('div');
+    card.className = 'project-card reveal';
+    card.innerHTML = `
+      <div class="project-thumb">${p.thumb}</div>
+      <h3>${p.title}</h3>
+      <div class="desc">${p.desc}</div>
+      <div class="project-stack">${p.stack.map(s => `<span class="stack-chip">${s}</span>`).join('')}</div>
+      <div class="project-more">자세히 보기 →</div>
+    `;
+    card.addEventListener('click', () => openModal(idx));
+    projectGrid.appendChild(card);
+  });
+
+  // ---------- Modal ----------
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSub = document.getElementById('modalSub');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalStack = document.getElementById('modalStack');
+  const modalAchievements = document.getElementById('modalAchievements');
+  const modalLink = document.getElementById('modalLink');
+
+  function openModal(idx) {
+    const p = projects[idx];
+    modalTitle.innerHTML = p.title.replace(/<br>/g, ' ');
+    modalSub.textContent = p.period;
+    modalDesc.textContent = p.desc;
+    modalStack.innerHTML = p.stack.map(s => `<span class="stack-chip">${s}</span>`).join('');
+    modalAchievements.innerHTML = p.achievements.map(a => `<li>${a}</li>`).join('');
+    modalLink.innerHTML = p.linkHtml;
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ---------- Scroll reveal ----------
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fact-card, .skill-group, .timeline-item, .pub-item').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
