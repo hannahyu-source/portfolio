@@ -6,32 +6,23 @@
 <title>유한나 (Hannah Yu) | Clinical Genomics Scientist</title>
 <style>
   :root {
-    --accent: #3b5bfd;
-    --accent-dark: #2a44d6;
-    --accent-soft: #eef1ff;
     --bg: #ffffff;
-    --bg-alt: #f7f8fb;
-    --text: #1b1d24;
-    --text-muted: #666b80;
-    --border: #e6e8ef;
+    --bg-alt: #f5f8fa;
+    --text: #17232f;
+    --text-muted: #667485;
+    --accent: #0f8fa6;
+    --accent-dim: #0b6f82;
+    --accent-glow: rgba(15, 143, 166, 0.28);
+    --accent-glow-soft: rgba(15, 143, 166, 0.09);
+    --orange: #e2823f;
+    --orange-dim: #c96a2c;
+    --orange-soft: rgba(226, 130, 63, 0.12);
+    --border: #e4e9ee;
+    --border-strong: rgba(15, 143, 166, 0.4);
     --card-bg: #ffffff;
-    --placeholder: #9aa0b8;
-    --placeholder-bg: #f1f2f7;
-    --shadow: 0 4px 20px rgba(20, 22, 42, 0.06);
-    --shadow-lg: 0 20px 60px rgba(20, 22, 42, 0.18);
-  }
-
-  [data-theme="dark"] {
-    --bg: #0f1019;
-    --bg-alt: #14162a;
-    --text: #eef0fb;
-    --text-muted: #9498b8;
-    --border: #262946;
-    --card-bg: #181a30;
-    --placeholder: #6b7093;
-    --placeholder-bg: #1e2038;
-    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.55);
+    --btn-text: #ffffff;
+    --shadow: 0 4px 20px rgba(23, 35, 47, 0.06);
+    --shadow-lg: 0 22px 50px rgba(23, 35, 47, 0.12);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,22 +35,23 @@
     line-height: 1.65;
     word-break: keep-all;
     overflow-wrap: break-word;
-    transition: background 0.3s ease, color 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
   }
 
   a { color: inherit; text-decoration: none; }
   ul { list-style: none; }
   button { font-family: inherit; cursor: pointer; }
 
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; position: relative; }
 
   /* ---------- Nav ---------- */
   header.nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: sticky;
+    top: 0;
     z-index: 100;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
 
@@ -71,62 +63,81 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
   }
 
   .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-weight: 800;
-    font-size: 17px;
+    font-size: 15.5px;
     letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .logo .logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
   }
 
   .nav-links {
     display: flex;
-    gap: 26px;
+    gap: 24px;
   }
 
   .nav-links a {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13.5px;
+    font-weight: 600;
     color: var(--text-muted);
     transition: color 0.2s ease;
   }
 
   .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--orange); }
 
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .icon-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     border: 1px solid var(--border);
-    background: var(--card-bg);
+    background: var(--bg-alt);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
-    transition: border-color 0.2s ease, transform 0.15s ease;
+    color: var(--text-muted);
+    transition: border-color 0.2s ease, transform 0.15s ease, color 0.2s ease, background 0.2s ease;
   }
-  .icon-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .icon-btn svg { width: 15px; height: 15px; fill: currentColor; }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow-soft); transform: translateY(-1px); }
 
   .hamburger {
     display: none;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     border: 1px solid var(--border);
-    background: var(--card-bg);
+    background: var(--bg-alt);
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 4px;
   }
   .hamburger span {
-    width: 18px;
+    width: 16px;
     height: 2px;
     background: var(--text);
     border-radius: 2px;
@@ -139,7 +150,7 @@
   .mobile-menu {
     display: none;
     flex-direction: column;
-    background: var(--bg);
+    background: #fff;
     border-bottom: 1px solid var(--border);
     padding: 8px 32px 20px;
   }
@@ -147,7 +158,7 @@
   .mobile-menu a {
     padding: 12px 0;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text);
     border-bottom: 1px solid var(--border);
   }
@@ -155,9 +166,9 @@
 
   /* ---------- Placeholder ---------- */
   .placeholder {
-    color: var(--placeholder);
-    background: var(--placeholder-bg);
-    border: 1px dashed var(--placeholder);
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    border: 1px dashed var(--border-strong);
     border-radius: 6px;
     padding: 1px 8px;
     font-size: 0.88em;
@@ -167,94 +178,167 @@
   }
 
   /* ---------- Hero ---------- */
-  section.hero {
-    padding: 168px 0 96px;
-    text-align: center;
-    background: radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 60%);
-  }
-  [data-theme="dark"] section.hero {
-    background: radial-gradient(circle at 50% 0%, rgba(59,91,253,0.12), transparent 60%);
+  section.hero { padding: 72px 0 64px; scroll-margin-top: 84px; }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
   }
 
-  .avatar-hero {
-    width: 176px;
-    height: 176px;
-    border-radius: 50%;
-    margin: 0 auto 28px;
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
-    border: 3px solid var(--card-bg);
+  .eyebrow {
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 16px;
   }
-  .avatar-hero img {
+
+  .hero h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.32;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .hero h1 .role-tag {
+    font-size: 0.5em;
+    font-weight: 800;
+    color: var(--orange);
+    display: block;
+    margin-top: 8px;
+  }
+
+  .hero .message {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 0 34px;
+    text-wrap: balance;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .hero-actions-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 13px 26px;
+    border-radius: 12px;
+    font-size: 14.5px;
+    font-weight: 700;
+    border: 1.5px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+  .btn.primary {
+    background: var(--accent);
+    color: var(--btn-text);
+    border-color: var(--accent);
+    box-shadow: 0 10px 26px var(--accent-glow);
+  }
+  .btn.primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); color: #fff; box-shadow: 0 14px 32px var(--accent-glow); }
+
+  .btn.small { padding: 9px 18px; font-size: 13px; }
+
+  /* Hero photo */
+  .hero-photo-wrap {
+    position: relative;
+    width: min(320px, 78vw);
+    height: min(360px, 88vw);
+    margin: 0 auto;
+  }
+  .hero-photo-wrap::before {
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: -18px;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 24px 24px 24px 130px;
+  }
+  .hero-photo-wrap::after {
+    content: "";
+    position: absolute;
+    bottom: -14px;
+    right: -14px;
+    width: 64px;
+    height: 64px;
+    background: var(--orange-soft);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  .hero-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px 24px 24px 130px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .eyebrow {
-    font-size: 13px;
-    letter-spacing: 0.1em;
+  /* ---------- Worked with ---------- */
+  .worked-with { padding: 46px 0 10px; }
+  .worked-with .wlabel {
+    font-size: 12.5px;
     text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 18px;
-  }
-
-  .hero h1 {
-    font-size: clamp(20px, 3.24vw, 30px);
-    font-weight: 800;
-    line-height: 1.3;
-    margin-bottom: 20px;
-  }
-  .hero h1 .role-tag {
-    font-size: 0.55em;
-    font-weight: 700;
-    color: var(--accent);
-    display: block;
-    margin-top: 8px;
-  }
-
-  .hero .message {
-    font-size: 16.5px;
+    letter-spacing: 0.1em;
     color: var(--text-muted);
-    max-width: 760px;
-    margin: 0 auto 36px;
-    text-wrap: balance;
+    margin-bottom: 18px;
+    font-weight: 700;
   }
-
-  .hero-actions {
-    display: flex;
+  .worked-with-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
   }
-
-  .btn {
-    padding: 13px 24px;
-    border-radius: 10px;
-    font-size: 14.5px;
-    font-weight: 600;
-    border: 1px solid var(--border);
-    background: var(--card-bg);
-    display: inline-flex;
+  .worked-with-grid .org {
+    display: flex;
     align-items: center;
-    gap: 8px;
-    transition: transform 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+    justify-content: center;
+    text-align: center;
+    padding: 18px 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 14.3px;
+    letter-spacing: 0.01em;
+    transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
-  .btn:hover { border-color: var(--accent); transform: translateY(-2px); }
-
-  .btn.primary {
-    background: var(--accent);
-    color: #fff;
+  .worked-with-grid .org:hover {
     border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
   }
-  .btn.primary:hover { background: var(--accent-dark); }
-
-  .btn.small { padding: 9px 16px; font-size: 13px; }
 
   /* ---------- Sections ---------- */
-  section { padding: 96px 0; scroll-margin-top: 80px; }
+  section { padding: 96px 0; scroll-margin-top: 84px; }
   section:nth-of-type(even) { background: var(--bg-alt); }
 
   .section-head {
@@ -266,6 +350,7 @@
     font-size: 30px;
     font-weight: 800;
     margin-bottom: 12px;
+    color: var(--text);
   }
   .section-head p { color: var(--text-muted); font-size: 15px; }
 
@@ -288,16 +373,18 @@
     border-radius: 14px;
     padding: 20px;
     box-shadow: var(--shadow);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
+  .fact-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
   .fact-card .label {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: 700;
   }
-  .fact-card .value { font-size: 14.5px; font-weight: 700; line-height: 1.45; }
+  .fact-card .value { font-size: 14.5px; font-weight: 700; line-height: 1.45; color: var(--text); }
 
   /* Skills */
   .skill-groups {
@@ -311,7 +398,9 @@
     border-radius: 14px;
     padding: 24px;
     box-shadow: var(--shadow);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
+  .skill-group:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
   .skill-group h4 {
     font-size: 13px;
     text-transform: uppercase;
@@ -324,16 +413,17 @@
     font-size: 12.5px;
     padding: 5px 11px;
     border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    font-weight: 600;
+    background: var(--accent-glow-soft);
+    border: 1px solid var(--border);
+    color: var(--accent-dim);
+    font-weight: 700;
   }
-  [data-theme="dark"] .skill-tag { background: rgba(59,91,253,0.15); }
 
   /* Projects */
   .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
   }
   .project-card {
@@ -346,29 +436,32 @@
     flex-direction: column;
     gap: 14px;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     text-align: left;
+    flex: 1 1 300px;
+    max-width: 380px;
   }
   .project-card:hover {
     transform: translateY(-5px);
+    border-color: var(--accent);
     box-shadow: var(--shadow-lg);
   }
   .project-thumb {
     min-height: 90px;
     border-radius: 10px;
-    background: linear-gradient(135deg, var(--accent-soft), var(--bg-alt));
+    background: linear-gradient(135deg, var(--accent-glow-soft), var(--orange-soft));
+    border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     line-height: 1.3;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--accent-dim);
     text-align: center;
     padding: 16px;
   }
-  [data-theme="dark"] .project-thumb { background: linear-gradient(135deg, rgba(59,91,253,0.15), var(--bg-alt)); }
-  .project-card h3 { font-size: 17.5px; font-weight: 700; text-align: center; }
+  .project-card h3 { font-size: 17.5px; font-weight: 700; text-align: center; color: var(--text); }
   .project-card .desc { font-size: 14px; color: var(--text-muted); flex: 1; }
   .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
   .stack-chip {
@@ -378,7 +471,7 @@
     background: var(--bg-alt);
     border: 1px solid var(--border);
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
   }
   .project-more {
     font-size: 13px;
@@ -391,7 +484,7 @@
     font-size: 15px;
     font-weight: 800;
     margin: 40px 0 18px;
-    color: var(--accent);
+    color: var(--orange);
   }
   .timeline-subtitle:first-child { margin-top: 0; }
   .timeline {
@@ -405,9 +498,11 @@
     border-radius: 14px;
     padding: 22px 26px;
     box-shadow: var(--shadow);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  .timeline-item .role { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-  .timeline-item .role a { color: var(--accent); }
+  .timeline-item:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); }
+  .timeline-item .role { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+  .timeline-item .role a { color: var(--accent-dim); }
   .timeline-item .role a:hover { text-decoration: underline; }
   .timeline-item .period { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
   .timeline-item .achievements {
@@ -433,8 +528,9 @@
     font-size: 13.5px;
     font-weight: 700;
     color: var(--text-muted);
+    transition: all 0.2s ease;
   }
-  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: var(--shadow); }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
@@ -453,21 +549,22 @@
     padding: 16px 20px;
     box-shadow: var(--shadow);
     font-size: 13.8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
+  .pub-item:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); }
   .pub-item .pub-title { color: var(--text); margin-bottom: 5px; }
   .pub-item .pub-meta { font-size: 12.5px; color: var(--text-muted); }
-  .pub-item a { color: var(--accent); font-weight: 700; }
+  .pub-item a { color: var(--accent-dim); font-weight: 700; }
   .if-badge {
     display: inline-block;
     font-size: 11px;
     font-weight: 700;
     padding: 2px 8px;
     border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
+    background: var(--orange-soft);
+    color: var(--orange-dim);
     margin-left: 6px;
   }
-  [data-theme="dark"] .if-badge { background: rgba(59,91,253,0.15); }
 
   /* Contact */
   .contact-section { text-align: center; }
@@ -490,13 +587,14 @@
     font-size: 13px;
     color: var(--text-muted);
     border-top: 1px solid var(--border);
+    position: relative;
   }
 
   /* ---------- Modal ---------- */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 11, 20, 0.55);
+    background: rgba(17, 24, 33, 0.45);
     backdrop-filter: blur(4px);
     display: none;
     align-items: center;
@@ -508,6 +606,7 @@
 
   .modal-box {
     background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 20px;
     max-width: 580px;
     width: 100%;
@@ -532,25 +631,26 @@
     border-radius: 50%;
     border: 1px solid var(--border);
     background: var(--bg-alt);
+    color: var(--text);
     display: flex; align-items: center; justify-content: center;
     font-size: 16px;
   }
-  .modal-close:hover { border-color: var(--accent); }
+  .modal-close:hover { border-color: var(--accent); color: var(--accent); }
 
-  .modal-box h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; padding-right: 40px; }
+  .modal-box h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; padding-right: 40px; color: var(--text); }
   .modal-box .modal-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
   .modal-box .modal-section-title {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--text-muted);
+    color: var(--accent-dim);
     font-weight: 700;
     margin: 20px 0 10px;
   }
   .modal-box p { font-size: 14.5px; color: var(--text-muted); }
   .modal-box ul { padding-left: 18px; }
   .modal-box ul li { list-style: disc; font-size: 14.5px; color: var(--text-muted); margin-bottom: 6px; }
-  .modal-box a { color: var(--accent); font-weight: 700; }
+  .modal-box a { color: var(--accent-dim); font-weight: 700; }
 
   /* Reveal animation */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -560,10 +660,14 @@
   @media (max-width: 860px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero .message { margin-left: auto; margin-right: auto; }
+    .hero-actions { align-items: center; }
+    .hero-actions-row { justify-content: center; }
     .about-grid { grid-template-columns: 1fr; }
     .about-facts { grid-template-columns: 1fr 1fr; }
     section { padding: 64px 0; }
-    section.hero { padding: 140px 0 64px; }
+    section.hero { padding: 40px 0 32px; }
     .wrap { padding: 0 20px; }
     .nav-inner { padding: 0 20px; }
   }
@@ -574,7 +678,7 @@
 <!-- ================= NAV ================= -->
 <header class="nav">
   <div class="nav-inner">
-    <a href="#hero" class="logo">Hannah Yu</a>
+    <a href="#hero" class="logo"><span class="logo-mark">H</span>Hannah Yu</a>
     <nav class="nav-links">
       <a href="#about">소개</a>
       <a href="#skills">기술 역량</a>
@@ -585,7 +689,15 @@
       <a href="#contact">연락처</a>
     </nav>
     <div class="nav-actions">
-      <button class="icon-btn" id="themeToggle" type="button" title="테마 전환">🌙</button>
+      <a class="icon-btn" href="https://www.linkedin.com/in/hannah-yu-9020ab268/?skipRedirect=true" target="_blank" rel="noopener" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.114 20.452H3.558V9h3.556v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/hannahyu-source/portfolio" target="_blank" rel="noopener" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a class="icon-btn" href="mailto:yuhannah82@gmail.com" title="Email">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
       <button class="hamburger" id="hamburger" type="button" aria-label="메뉴 열기">
         <span></span><span></span><span></span>
       </button>
@@ -605,15 +717,39 @@
 <!-- ================= HERO ================= -->
 <section class="hero" id="hero">
   <div class="wrap">
-    <div class="avatar-hero"><img src="assets/profile.png" alt="유한나 (Hannah Yu) 프로필 사진"></div>
-    <div class="eyebrow">Portfolio</div>
-    <h1>유한나 (Hannah Yu)<span class="role-tag">Clinical Genomics Scientist</span></h1>
-    <p class="message">임상 유전체 분석과 중개 연구 분야에서 10년 이상의 연구 경험을 보유한 연구자입니다. WES·WGS 기반 변이 해석과 임상 보고서 작성부터 Oxford Nanopore 기반 초고정확도 시퀀싱 기술 개발(Advanced Science, IF 14.5 제1저자)까지, 연구와 임상을 연결하는 중개 연구 역량을 갖추고 있습니다.</p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn primary">대표 연구 보기</a>
-      <a href="#contact" class="btn">연락하기</a>
-      <a href="assets/유한나_국문이력서_2026.pdf" class="btn" download>📄 국문 이력서</a>
-      <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn" download>📄 English CV</a>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Welcome to my portfolio</div>
+        <h1>유한나 (Hannah Yu)<span class="role-tag">Clinical Genomics Scientist</span></h1>
+        <p class="message">임상 유전체 분석과 중개 연구 분야에서 10년 이상의 연구 경험을 보유한 연구자입니다. WES·WGS 기반 변이 해석과 임상 보고서 작성부터 Oxford Nanopore 기반 초고정확도 시퀀싱 기술 개발(Advanced Science, IF 14.5 제1저자)까지, 연구와 임상을 연결하는 중개 연구 역량을 갖추고 있습니다.</p>
+        <div class="hero-actions">
+          <div class="hero-actions-row">
+            <a href="#projects" class="btn primary">대표 연구 보기 <span>&#8250;</span></a>
+            <a href="#contact" class="btn">연락하기</a>
+          </div>
+          <div class="hero-actions-row">
+            <a href="assets/유한나_국문이력서_2026.pdf" class="btn" download>&#128196; 국문 이력서</a>
+            <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn" download>&#128196; English CV</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photo-col">
+        <div class="hero-photo-wrap">
+          <div class="hero-photo">
+            <img src="assets/profile.png" alt="유한나 (Hannah Yu) 프로필 사진">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap worked-with">
+    <div class="wlabel">함께한 기관 (Worked With)</div>
+    <div class="worked-with-grid">
+      <div class="org">Samsung Medical Center</div>
+      <div class="org">3billion</div>
+      <div class="org">The Ohio State University</div>
+      <div class="org">KRISS · UST</div>
     </div>
   </div>
 </section>
@@ -664,44 +800,34 @@
       <div class="skill-group">
         <h4>Sequencing &amp; Genomics</h4>
         <div class="skill-tags">
-          <span class="skill-tag">WES / WGS</span>
-          <span class="skill-tag">RNA-seq</span>
-          <span class="skill-tag">Oxford Nanopore</span>
-          <span class="skill-tag">Illumina MiSeq</span>
-          <span class="skill-tag">NovaSeq X Plus</span>
-          <span class="skill-tag">AVITI24</span>
-          <span class="skill-tag">Metagenome 분석</span>
+          <span class="skill-tag">WGS/WES</span>
+          <span class="skill-tag">RNA Sequencing</span>
+          <span class="skill-tag">Long-read Sequencing (ONT, PacBio)</span>
+          <span class="skill-tag">Variant Analysis</span>
+          <span class="skill-tag">Clinical Genomics</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Clinical &amp; Bioinformatics</h4>
+        <h4>Clinical Genomics &amp; Bioinformatics</h4>
         <div class="skill-tags">
-          <span class="skill-tag">WES/WGS 변이 해석</span>
-          <span class="skill-tag">임상 보고서 작성</span>
-          <span class="skill-tag">희귀질환 진단 지원</span>
-          <span class="skill-tag">AI 기반 문헌조사</span>
-          <span class="skill-tag">유전상담팀 협업</span>
+          <span class="skill-tag">WES / WGS Analysis</span>
+          <span class="skill-tag">Variant Interpretation</span>
+          <span class="skill-tag">Clinical Reporting</span>
+          <span class="skill-tag">Cancer &amp; Rare Disease Genomics</span>
+          <span class="skill-tag">AI-assisted Literature Review</span>
         </div>
       </div>
       <div class="skill-group">
         <h4>Molecular Biology</h4>
         <div class="skill-tags">
+          <span class="skill-tag">NGS library prep</span>
           <span class="skill-tag">Cloning</span>
           <span class="skill-tag">Site-directed mutagenesis</span>
           <span class="skill-tag">qPCR / dPCR</span>
           <span class="skill-tag">HRM</span>
           <span class="skill-tag">Bisulfite conversion</span>
           <span class="skill-tag">In vitro methylation</span>
-          <span class="skill-tag">NGS library prep</span>
           <span class="skill-tag">CRISPR/Cas9</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Instrumentation</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">CE (모세관 전기영동)</span>
-          <span class="skill-tag">MALDI-TOF</span>
-          <span class="skill-tag">FACS</span>
         </div>
       </div>
     </div>
@@ -728,7 +854,7 @@
       <h2>경력 · 학력</h2>
     </div>
 
-    <div class="timeline-subtitle">경력 (Career)</div>
+    <div class="timeline-subtitle">주요 경력 (Career Highlights)</div>
     <div class="timeline">
       <div class="timeline-item">
         <div class="role"><a href="https://3billion.io/" target="_blank" rel="noopener">쓰리빌리언</a> · 임상 유전 과학자</div>
@@ -736,7 +862,7 @@
         <ul class="achievements">
           <li>유전체 검사(WES/WGS)의 변이 해석 및 보고서 작성</li>
           <li>AI를 활용하여 희귀질환 관련 유전자 및 변이에 대한 문헌 조사 및 임상적 해석</li>
-          <li>의료진 및 유전상담팀과의 커뮤니케이션을 통한 증상-유전정보 통합 분석</li>
+          <li>의료진 및 임상진단팀과의 커뮤니케이션을 통한 증상-유전정보 통합 분석</li>
           <li>유전진단 인공지능 모델 고도화 연구 (AI engineer, bioinformatics 전문가들과 공동 연구)</li>
         </ul>
       </div>
@@ -748,14 +874,6 @@
           <li>임상 시료에서 핵산 추출, 품질 평가, 시퀀싱 라이브러리 제작</li>
           <li>NovaSeq X Plus 및 AVITI24 플랫폼을 활용한 WES 및 전사체 시퀀싱 수행</li>
           <li>생물정보학팀과 협업하여 데이터 처리, 분석 및 해석 진행</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="role"><a href="https://ridd.pusan.ac.kr/ridd/index..do" target="_blank" rel="noopener">부산대학교</a> · 박사 연구원</div>
-        <div class="period">2024.09 – 2025.01</div>
-        <ul class="achievements">
-          <li>국가중앙인체자원은행에서 1,017건의 혈액 및 조직 자원을 제공받아 DNA 제작 및 QC 수행</li>
-          <li>국립보건연구원 세균질환과에서 제공받은 6종 결핵균 균주의 전장 유전체 시퀀싱 수행 및 데이터 분석</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -782,14 +900,6 @@
           <li>분자생물학 연구기술 숙련: cloning, site-directed mutagenesis, qPCR/dPCR, HRM, bisulfite conversion, in vitro methylation, NGS library preparation</li>
         </ul>
       </div>
-      <div class="timeline-item">
-        <div class="role"><a href="https://biology.cnu.ac.kr/biology/professor/professor.do?mode=view&key=LZStrEwBhEZzcGYg%20&pager.offset=0&pagerLimit=10" target="_blank" rel="noopener">충남대학교</a> · 석사과정 연구원</div>
-        <div class="period">2007 – 2008</div>
-        <ul class="achievements">
-          <li>제브라피쉬 사육 및 관리</li>
-          <li>microinjection 및 whole-mount in situ hybridization 수행</li>
-        </ul>
-      </div>
     </div>
 
     <div class="timeline-subtitle">학력 (Education)</div>
@@ -799,13 +909,6 @@
         <div class="period">2010 – 2016</div>
         <ul class="achievements">
           <li>학위논문: 유전자 계량을 위한 기준 측정 방법 개발 — 유전자 메틸화, 유전자 발현, 세균 군집 프로파일링</li>
-          <li>지도교수: 양인철 교수</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="role"><a href="https://www.kriss.re.kr/departmentWeb/department2deptsView.es?mid=a11003010100&kd2_code=1000028" target="_blank" rel="noopener">한국표준과학연구원</a> 생물분석센터 · 인턴십</div>
-        <div class="period">2009 – 2010</div>
-        <ul class="achievements">
           <li>지도교수: 양인철 교수</li>
         </ul>
       </div>
@@ -879,46 +982,6 @@
         <div class="pub-item">
           <div class="pub-title">Kang MJ, <strong>Yu H</strong>, Kim SK, Park SR, Yang I. Quantification of trace-level DNA by real time whole genome amplification.</div>
           <div class="pub-meta">PLOS One (2011) · <a href="https://doi.org/10.1371/journal.pone.0028661" target="_blank" rel="noopener">doi:10.1371/journal.pone.0028661</a><span class="if-badge">IF 3.2</span></div>
-        </div>
-      </div>
-
-      <div class="pub-group-title">Submitted</div>
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-title">Lee GE, Golconda S, <strong>Yu H</strong>, Kim S, Kim S. "Universal RNA Linearization Enables Full-Length Nanopore DRS Across Whole Transcriptomes"</div>
-          <div class="pub-meta">Manuscript submitted</div>
-        </div>
-      </div>
-
-      <div class="pub-group-title">In preparation</div>
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-title"><strong>Yu H</strong>, Golconda S, Baek A, Kim S, Kim S. "Novel twin barcoding for ultra-high-accuracy, Nanopore sequencing for HIV-1 whole genome analysis"</div>
-          <div class="pub-meta">Manuscript in preparation</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title"><strong>Yu H</strong>, Golconda S, Baek A, Kim S, Kim S. "Recombination-free, long-range PCR for full-length HIV-1 DNA genotyping"</div>
-          <div class="pub-meta">Manuscript in preparation</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Kim S, <strong>Yu H</strong>, Golconda S, Reneu J, Hanel W, Kim S. "Treatment resistance of Follicular T helper cells in T-cell-targeting antibody and immunotoxin therapies"</div>
-          <div class="pub-meta">Manuscript in preparation</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Golconda S, Lee GE, <strong>Yu H</strong>, Kim S, Kim S. "Context dependent and HIV-1-specific regulation of RNA and protein expression by HIV-1's site specific m6A RNA modifications"</div>
-          <div class="pub-meta">Manuscript in preparation</div>
-        </div>
-      </div>
-
-      <div class="pub-group-title">Peer-reviewed Abstracts</div>
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-title"><strong>Yu H</strong>, Baek A, Golconda S, Kim S. "Novel twin barcoding for ultrahigh-accuracy, Nanopore sequencing for HIV-1 whole genome analysis."</div>
-          <div class="pub-meta">NHGRI Advanced Genomic Technology Development Meeting, 2019, Boston, MA</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title"><strong>Yu H</strong>, Baek A, Golconda S, Kim S. "Ultra-high-accuracy Nanopore target-sequencing for innovations in HIV diagnosis and surveillance."</div>
-          <div class="pub-meta">NHGRI Advanced Genomic Technology Development Meeting, 2019, Boston, MA</div>
         </div>
       </div>
     </div>
@@ -1045,18 +1108,17 @@
   <div class="wrap contact-section">
     <div class="section-head">
       <div class="eyebrow">Contact</div>
-      <h2>연락 주세요</h2>
       <p>연구·채용 관련 문의는 이메일 또는 LinkedIn으로 편하게 연락 주세요.</p>
     </div>
     <div class="contact-buttons">
-      <a href="mailto:yuhannah82@gmail.com" class="btn primary">📧 yuhannah82@gmail.com</a>
-      <a href="https://www.linkedin.com/in/hannah-yu-9020ab268/?skipRedirect=true" target="_blank" rel="noopener" class="btn">💼 LinkedIn</a>
-      <a href="https://github.com/hannahyu-source/portfolio" target="_blank" rel="noopener" class="btn">💻 GitHub</a>
-      <a href="https://scholar.google.com/citations?hl=ko&user=pQJStZ0AAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener" class="btn">🎓 Google Scholar</a>
+      <a href="mailto:yuhannah82@gmail.com" class="btn primary">&#128231; yuhannah82@gmail.com</a>
+      <a href="https://www.linkedin.com/in/hannah-yu-9020ab268/?skipRedirect=true" target="_blank" rel="noopener" class="btn">&#128188; LinkedIn</a>
+      <a href="https://github.com/hannahyu-source/portfolio" target="_blank" rel="noopener" class="btn">&#128187; GitHub</a>
+      <a href="https://scholar.google.com/citations?hl=ko&user=pQJStZ0AAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener" class="btn">&#127891; Google Scholar</a>
     </div>
     <div class="contact-buttons" style="margin-top:14px;">
-      <a href="assets/유한나_국문이력서_2026.pdf" class="btn small" download>📄 국문 이력서 다운로드</a>
-      <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn small" download>📄 English CV 다운로드</a>
+      <a href="assets/유한나_국문이력서_2026.pdf" class="btn small" download>&#128196; 국문 이력서 다운로드</a>
+      <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn small" download>&#128196; English CV 다운로드</a>
     </div>
   </div>
 </section>
@@ -1068,7 +1130,7 @@
 <!-- ================= PROJECT MODAL ================= -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box" role="dialog" aria-modal="true">
-    <button class="modal-close" id="modalClose" type="button">✕</button>
+    <button class="modal-close" id="modalClose" type="button">&#10005;</button>
     <h3 id="modalTitle"></h3>
     <div class="modal-sub" id="modalSub"></div>
     <div class="modal-section-title">개요</div>
@@ -1083,21 +1145,6 @@
 </div>
 
 <script>
-  // ---------- Theme toggle ----------
-  const root = document.documentElement;
-  const themeToggle = document.getElementById('themeToggle');
-
-  function applyTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('portfolio-theme', theme);
-  }
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(localStorage.getItem('portfolio-theme') || (prefersDark ? 'dark' : 'light'));
-  themeToggle.addEventListener('click', () => {
-    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  });
-
   // ---------- Mobile menu ----------
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -1126,7 +1173,7 @@
       title: 'CLAE: High-Fidelity Nanopore Sequencing',
       period: '오하이오주립대학교 · 2016.04 – 2024.07',
       thumb: 'Advanced Science 2025<br>제1저자',
-      desc: 'Oxford Nanopore 기반 circular long-read DNA construct와 twin random barcode 생성 기술을 개발하여, read 단위의 초고정확도 바이러스 변이 검출과 환경 RNA 바이러스 발굴을 가능하게 한 시퀀싱 전략(CLAE)입니다. Advanced Science(IF 14.5)에 제1저자로 게재되었습니다.',
+      desc: 'Oxford Nanopore 기반 circular long-read DNA construct 생성 기술을 개발하여, read 단위의 초고정확도 바이러스 변이 검출과 환경 RNA 바이러스 발굴을 가능하게 한 시퀀싱 전략(CLAE)입니다. Advanced Science(IF 14.5)에 제1저자로 게재되었습니다.',
       stack: ['Oxford Nanopore', 'Long-read sequencing', 'Twin barcoding', 'Bioinformatics'],
       achievements: [
         '환자 및 폐수 시료 내 SARS-CoV-2 변이 검출 및 모니터링',
@@ -1140,20 +1187,20 @@
       title: '임상 유전체 변이 해석<br>& AI 진단 모델 고도화',
       period: '쓰리빌리언 · 2025.11 – 2026.02',
       thumb: '희귀질환 진단 지원',
-      desc: 'WES/WGS 기반 유전체 검사 결과의 변이 해석 및 임상 보고서를 작성하고, AI를 활용해 희귀질환 관련 유전자·변이에 대한 문헌 조사와 임상적 해석을 수행했습니다. 의료진 및 유전상담팀과 협업하여 증상-유전정보 통합 분석을 진행하고, AI 엔지니어·생물정보학 전문가와 함께 유전진단 인공지능 모델 고도화 연구에 참여했습니다.',
-      stack: ['WES/WGS 변이 해석', '임상 보고서 작성', 'AI 문헌조사', '유전상담 협업'],
+      desc: 'WES/WGS 기반 유전체 검사 결과의 변이 해석 및 임상 보고서를 작성하고, AI를 활용해 희귀질환 관련 유전자·변이에 대한 문헌 조사와 임상적 해석을 수행했습니다. 의료진 및 임상진단팀과 협업하여 증상-유전정보 통합 분석을 진행하고, AI 엔지니어·생물정보학 전문가와 함께 유전진단 인공지능 모델 고도화 연구에 참여했습니다.',
+      stack: ['WES/WGS 변이 해석', '임상 보고서 작성', 'AI 문헌조사', '유전진단 협업'],
       achievements: [
         '희귀질환 관련 유전자·변이의 임상적 해석 및 보고서 작성',
-        '의료진·유전상담팀과의 증상-유전정보 통합 분석',
+        '의료진·임상진단팀과의 증상-유전정보 통합 분석',
         'AI engineer, bioinformatics 전문가와 공동으로 유전진단 AI 모델 고도화 연구 수행'
       ],
       linkHtml: '<a href="https://3billion.io/" target="_blank" rel="noopener">쓰리빌리언 (3billion) 공식 웹사이트</a> · <span class="placeholder">프로젝트 상세는 비공개 사내 자료</span>'
     },
     {
-      title: '유전자 계량 인증표준물질(CRM)<br>개발',
+      title: '유전자 계량을 위한<br>표준 측정 방법 개발',
       period: 'UST / 한국표준과학연구원 · 2010.09 – 2016.02',
-      thumb: '박사학위 연구 · 특허 5건',
-      desc: '유전자 계량을 위한 기준 측정 방법을 개발한 박사학위 연구로, dNMP/NMP, human genomic DNA, miRNA, gene methylation, 16S rDNA 등 다양한 인증표준물질(CRM)을 개발했습니다. qPCR/dPCR, CE, bisulfite conversion 등 정량 분석 기술을 활용해 유전자 메틸화·발현·세균 군집 프로파일링의 기준 측정법을 설계하고 검증했습니다.',
+      thumb: '박사학위 논문 및 특허 출원',
+      desc: '유전자 계량을 위한 표준 측정 방법을 개발한 박사학위 연구로, dNMP/NMP, human genomic DNA, miRNA, gene methylation, 16S rDNA 등 다양한 인증표준물질(CRM)을 개발했습니다. qPCR/dPCR, CE, bisulfite conversion 등 정량 분석 기술을 활용해 유전자 메틸화·발현·세균 군집 프로파일링의 표준 측정법을 설계하고 검증했습니다.',
       stack: ['qPCR / dPCR', 'CE', 'Bisulfite conversion', 'NGS library prep', 'HRM'],
       achievements: [
         '5건의 관련 특허 등록 (US, PCT)',
