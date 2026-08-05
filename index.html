@@ -4,785 +4,200 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>유한나 (Hannah Yu) | Clinical Genomics Scientist</title>
-<style>
-  :root {
-    --bg: #ffffff;
-    --bg-alt: #f5f8fa;
-    --text: #17232f;
-    --text-muted: #667485;
-    --accent: #0f8fa6;
-    --accent-dim: #0b6f82;
-    --accent-glow: rgba(15, 143, 166, 0.28);
-    --accent-glow-soft: rgba(15, 143, 166, 0.09);
-    --orange: #e2823f;
-    --orange-dim: #c96a2c;
-    --orange-soft: rgba(226, 130, 63, 0.12);
-    --border: #e4e9ee;
-    --border-strong: rgba(15, 143, 166, 0.4);
-    --card-bg: #ffffff;
-    --btn-text: #ffffff;
-    --shadow: 0 4px 20px rgba(23, 35, 47, 0.06);
-    --shadow-lg: 0 22px 50px rgba(23, 35, 47, 0.12);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            50: '#eaf6f8',
+            100: '#d3edf1',
+            400: '#2ba0b6',
+            500: '#0f8fa6',
+            600: '#0b6f82',
+            700: '#085764'
+          },
+          accent2: {
+            50: '#fdf1e7',
+            100: '#fbe3cd',
+            400: '#ea9a5f',
+            500: '#e2823f',
+            600: '#c96a2c'
+          }
+        },
+        fontFamily: {
+          sans: ['Pretendard', 'Apple SD Gothic Neo', 'Segoe UI', 'system-ui', '-apple-system', 'sans-serif']
+        },
+        maxWidth: {
+          container: '1440px'
+        }
+      }
+    }
+  };
+</script>
+<style type="text/tailwindcss">
   html { scroll-behavior: smooth; }
+  body { word-break: keep-all; overflow-wrap: break-word; }
 
-  body {
-    font-family: "Pretendard", "Apple SD Gothic Neo", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.65;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-    position: relative;
-    overflow-x: hidden;
-  }
+  @layer components {
+    .container-custom { @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-10; }
+    .eyebrow { @apply mb-3 inline-block text-[19px] font-bold text-brand-500; }
+    .section-title { @apply mb-3 text-[38px] font-extrabold text-slate-900 sm:text-5xl; }
+    .card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-lg sm:p-6; }
+    .chip { @apply inline-flex items-center rounded-full border border-slate-200 bg-brand-50 px-3 py-1 text-base font-bold text-brand-600; }
+    .chip-muted { @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-sm font-bold text-slate-500; }
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-lg font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600 hover:shadow-md; }
+    .btn-primary { @apply border-brand-500 bg-brand-500 text-white shadow-[0_10px_26px_rgba(15,143,166,0.28)] hover:bg-brand-600 hover:border-brand-600 hover:text-white; }
+    .nav-link { @apply text-lg font-semibold text-slate-500 transition hover:text-brand-500; }
+    .icon-btn { @apply flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 transition hover:border-brand-500 hover:bg-brand-50 hover:text-brand-500; }
+    .tab-btn { @apply rounded-full border border-slate-200 bg-white px-5 py-2.5 text-lg font-bold text-slate-500 transition; }
+    .tab-btn.is-active { @apply border-brand-500 bg-brand-500 text-white shadow-sm; }
+    .timeline-card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-brand-500 hover:shadow-lg sm:p-6; }
+    .achv-list { @apply list-disc space-y-1.5 pl-5 text-lg text-slate-500; }
 
-  a { color: inherit; text-decoration: none; }
-  ul { list-style: none; }
-  button { font-family: inherit; cursor: pointer; }
-
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; position: relative; }
-
-  /* ---------- Nav ---------- */
-  header.nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-inner {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 32px;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 15.5px;
-    letter-spacing: -0.01em;
-    color: var(--text);
-  }
-  .logo .logo-mark {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 2px solid var(--accent);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 15px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 24px;
-  }
-
-  .nav-links a {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--text-muted);
-    transition: color 0.2s ease;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-  .nav-links a.active { color: var(--orange); }
-
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .icon-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--bg-alt);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    transition: border-color 0.2s ease, transform 0.15s ease, color 0.2s ease, background 0.2s ease;
-  }
-  .icon-btn svg { width: 15px; height: 15px; fill: currentColor; }
-  .icon-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow-soft); transform: translateY(-1px); }
-
-  .hamburger {
-    display: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--bg-alt);
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .hamburger span {
-    width: 16px;
-    height: 2px;
-    background: var(--text);
-    border-radius: 2px;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    background: #fff;
-    border-bottom: 1px solid var(--border);
-    padding: 8px 32px 20px;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    padding: 12px 0;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    border-bottom: 1px solid var(--border);
-  }
-  .mobile-menu a:last-child { border-bottom: none; }
-
-  /* ---------- Placeholder ---------- */
-  .placeholder {
-    color: var(--text-muted);
-    background: var(--bg-alt);
-    border: 1px dashed var(--border-strong);
-    border-radius: 6px;
-    padding: 1px 8px;
-    font-size: 0.88em;
-    font-style: normal;
-    display: inline-block;
-    white-space: nowrap;
-  }
-
-  /* ---------- Hero ---------- */
-  section.hero { padding: 72px 0 64px; scroll-margin-top: 84px; }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 56px;
-    align-items: center;
-  }
-
-  .eyebrow {
-    display: inline-block;
-    font-size: 14.5px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-
-  .hero h1 {
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 800;
-    line-height: 1.32;
-    color: var(--text);
-    margin-bottom: 20px;
-  }
-  .hero h1 .role-tag {
-    font-size: 0.5em;
-    font-weight: 800;
-    color: var(--orange);
-    display: block;
-    margin-top: 8px;
-  }
-
-  .hero .message {
-    font-size: 16px;
-    color: var(--text-muted);
-    max-width: 560px;
-    margin: 0 0 34px;
-    text-wrap: balance;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .hero-actions-row {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 13px 26px;
-    border-radius: 12px;
-    font-size: 14.5px;
-    font-weight: 700;
-    border: 1.5px solid var(--border);
-    background: var(--card-bg);
-    color: var(--text);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
-  }
-  .btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
-
-  .btn.primary {
-    background: var(--accent);
-    color: var(--btn-text);
-    border-color: var(--accent);
-    box-shadow: 0 10px 26px var(--accent-glow);
-  }
-  .btn.primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); color: #fff; box-shadow: 0 14px 32px var(--accent-glow); }
-
-  .btn.small { padding: 9px 18px; font-size: 13px; }
-
-  /* Hero photo */
-  .hero-photo-wrap {
-    position: relative;
-    width: min(320px, 78vw);
-    height: min(360px, 88vw);
-    margin: 0 auto;
-  }
-  .hero-photo-wrap::before {
-    content: "";
-    position: absolute;
-    top: -18px;
-    left: -18px;
-    width: 100%;
-    height: 100%;
-    background: var(--accent);
-    border-radius: 24px 24px 24px 130px;
-  }
-  .hero-photo-wrap::after {
-    content: "";
-    position: absolute;
-    bottom: -14px;
-    right: -14px;
-    width: 64px;
-    height: 64px;
-    background: var(--orange-soft);
-    border-radius: 50%;
-    z-index: 0;
-  }
-  .hero-photo {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    border-radius: 24px 24px 24px 130px;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-  }
-  .hero-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* ---------- Worked with ---------- */
-  .worked-with { padding: 46px 0 10px; }
-  .worked-with .wlabel {
-    font-size: 12.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 18px;
-    font-weight: 700;
-  }
-  .worked-with-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 14px;
-  }
-  .worked-with-grid .org {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 18px 12px;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--card-bg);
-    box-shadow: var(--shadow);
-    color: var(--text-muted);
-    font-weight: 700;
-    font-size: 14.3px;
-    letter-spacing: 0.01em;
-    transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  }
-  .worked-with-grid .org:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-3px);
-  }
-
-  /* ---------- Sections ---------- */
-  section { padding: 96px 0; scroll-margin-top: 84px; }
-  section:nth-of-type(even) { background: var(--bg-alt); }
-
-  .section-head {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto 52px;
-  }
-  .section-head h2 {
-    font-size: 30px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    color: var(--text);
-  }
-  .section-head p { color: var(--text-muted); font-size: 15px; }
-
-  /* About */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
-    align-items: start;
-  }
-  .about-text p { color: var(--text-muted); margin-bottom: 14px; font-size: 15px; }
-  .about-facts {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .fact-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  }
-  .fact-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-  .fact-card .label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-    font-weight: 700;
-  }
-  .fact-card .value { font-size: 14.5px; font-weight: 700; line-height: 1.45; color: var(--text); }
-
-  /* Skills */
-  .skill-groups {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 20px;
-  }
-  .skill-group {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    box-shadow: var(--shadow);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  }
-  .skill-group:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-  .skill-group h4 {
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    margin-bottom: 14px;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-tag {
-    font-size: 12.5px;
-    padding: 5px 11px;
-    border-radius: 999px;
-    background: var(--accent-glow-soft);
-    border: 1px solid var(--border);
-    color: var(--accent-dim);
-    font-weight: 700;
-  }
-
-  /* Projects */
-  .project-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 24px;
-  }
-  .project-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 26px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    text-align: left;
-    flex: 1 1 300px;
-    max-width: 380px;
-  }
-  .project-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
-    box-shadow: var(--shadow-lg);
-  }
-  .project-thumb {
-    min-height: 90px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--accent-glow-soft), var(--orange-soft));
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    line-height: 1.3;
-    font-weight: 700;
-    color: var(--accent-dim);
-    text-align: center;
-    padding: 16px;
-  }
-  .project-card h3 { font-size: 17.5px; font-weight: 700; text-align: center; color: var(--text); }
-  .project-card .desc { font-size: 14px; color: var(--text-muted); flex: 1; }
-  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
-  .stack-chip {
-    font-size: 11.5px;
-    padding: 4px 9px;
-    border-radius: 999px;
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    font-weight: 700;
-  }
-  .project-more {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--accent);
-  }
-
-  /* Career / Education */
-  .timeline-subtitle {
-    font-size: 15px;
-    font-weight: 800;
-    margin: 40px 0 18px;
-    color: var(--orange);
-  }
-  .timeline-subtitle:first-child { margin-top: 0; }
-  .timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  .timeline-item {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 26px;
-    box-shadow: var(--shadow);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .timeline-item:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); }
-  .timeline-item .role { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
-  .timeline-item .role a { color: var(--accent-dim); }
-  .timeline-item .role a:hover { text-decoration: underline; }
-  .timeline-item .period { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
-  .timeline-item .achievements {
-    padding-left: 18px;
-    color: var(--text-muted);
-    font-size: 14px;
-  }
-  .timeline-item .achievements li { margin-bottom: 6px; list-style: disc; }
-
-  /* Publications tabs */
-  .tabs {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 36px;
-  }
-  .tab-btn {
-    padding: 10px 18px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--card-bg);
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--text-muted);
-    transition: all 0.2s ease;
-  }
-  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: var(--shadow); }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-
-  .pub-group-title {
-    font-size: 14.5px;
-    font-weight: 800;
-    margin: 30px 0 14px;
-    color: var(--text);
-  }
-  .pub-group-title:first-child { margin-top: 0; }
-  .pub-list { display: flex; flex-direction: column; gap: 12px; }
-  .pub-item {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: var(--shadow);
-    font-size: 13.8px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .pub-item:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); }
-  .pub-item .pub-title { color: var(--text); margin-bottom: 5px; }
-  .pub-item .pub-meta { font-size: 12.5px; color: var(--text-muted); }
-  .pub-item a { color: var(--accent-dim); font-weight: 700; }
-  .if-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 999px;
-    background: var(--orange-soft);
-    color: var(--orange-dim);
-    margin-left: 6px;
-  }
-
-  /* Contact */
-  .contact-section { text-align: center; }
-  .contact-buttons {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 8px;
-  }
-  .resume-note {
-    font-size: 12.5px;
-    color: var(--text-muted);
-    margin-top: 14px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 36px;
-    font-size: 13px;
-    color: var(--text-muted);
-    border-top: 1px solid var(--border);
-    position: relative;
-  }
-
-  /* ---------- Modal ---------- */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(17, 24, 33, 0.45);
-    backdrop-filter: blur(4px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    z-index: 200;
-  }
-  .modal-overlay.open { display: flex; }
-
-  .modal-box {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    max-width: 580px;
-    width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 36px;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    transform: translateY(16px);
-    opacity: 0;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-  }
-  .modal-overlay.open .modal-box {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 20px; right: 20px;
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--bg-alt);
-    color: var(--text);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .modal-close:hover { border-color: var(--accent); color: var(--accent); }
-
-  .modal-box h3 { font-size: 21px; font-weight: 800; margin-bottom: 8px; padding-right: 40px; color: var(--text); }
-  .modal-box .modal-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
-  .modal-box .modal-section-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--accent-dim);
-    font-weight: 700;
-    margin: 20px 0 10px;
-  }
-  .modal-box p { font-size: 14.5px; color: var(--text-muted); }
-  .modal-box ul { padding-left: 18px; }
-  .modal-box ul li { list-style: disc; font-size: 14.5px; color: var(--text-muted); margin-bottom: 6px; }
-  .modal-box a { color: var(--accent-dim); font-weight: 700; }
-
-  /* Reveal animation */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* Mobile */
-  @media (max-width: 860px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .hero-grid { grid-template-columns: 1fr; text-align: center; }
-    .hero .message { margin-left: auto; margin-right: auto; }
-    .hero-actions { align-items: center; }
-    .hero-actions-row { justify-content: center; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-facts { grid-template-columns: 1fr 1fr; }
-    section { padding: 64px 0; }
-    section.hero { padding: 40px 0 32px; }
-    .wrap { padding: 0 20px; }
-    .nav-inner { padding: 0 20px; }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    .animate-float { animation: float 4s ease-in-out infinite; }
   }
 </style>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body>
+<body class="font-sans leading-relaxed text-slate-900 antialiased">
 
 <!-- ================= NAV ================= -->
-<header class="nav">
-  <div class="nav-inner">
-    <a href="#hero" class="logo"><span class="logo-mark">H</span>Hannah Yu</a>
-    <nav class="nav-links">
-      <a href="#about">소개</a>
-      <a href="#skills">기술 역량</a>
-      <a href="#projects">대표 연구</a>
-      <a href="#career">경력·학력</a>
-      <a href="#publications">논문·특허</a>
-      <a href="#training">교육·자격</a>
-      <a href="#contact">연락처</a>
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="container-custom flex h-16 items-center justify-between gap-4 sm:h-[68px]">
+    <a href="#hero" class="flex items-center gap-2.5 text-lg font-extrabold text-slate-900">
+      <span class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-brand-500 text-lg font-extrabold text-brand-500">H</span>
+      Hannah Yu
+    </a>
+
+    <!-- Desktop nav (1024px+) -->
+    <nav class="hidden items-center gap-6 lg:flex">
+      <a href="#about" class="nav-link">소개</a>
+      <a href="#skills" class="nav-link">기술 역량</a>
+      <a href="#projects" class="nav-link">대표 연구</a>
+      <a href="#career" class="nav-link">경력·학력</a>
+      <a href="#publications" class="nav-link">논문·특허</a>
+      <a href="#training" class="nav-link">교육·자격</a>
+      <a href="#contact" class="nav-link">연락처</a>
     </nav>
-    <div class="nav-actions">
+
+    <div class="flex items-center gap-2">
       <a class="icon-btn" href="https://www.linkedin.com/in/hannah-yu-9020ab268/?skipRedirect=true" target="_blank" rel="noopener" title="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.114 20.452H3.558V9h3.556v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <svg viewBox="0 0 24 24" class="h-[15px] w-[15px] fill-current"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.114 20.452H3.558V9h3.556v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       </a>
       <a class="icon-btn" href="https://github.com/hannahyu-source/portfolio" target="_blank" rel="noopener" title="GitHub">
-        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <svg viewBox="0 0 24 24" class="h-[15px] w-[15px] fill-current"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
       </a>
       <a class="icon-btn" href="mailto:yuhannah82@gmail.com" title="Email">
-        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <svg viewBox="0 0 24 24" class="h-[15px] w-[15px]"><rect x="2" y="4" width="20" height="16" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
       </a>
-      <button class="hamburger" id="hamburger" type="button" aria-label="메뉴 열기">
-        <span></span><span></span><span></span>
+
+      <!-- Hamburger (mobile only) -->
+      <button id="hamburger" type="button" aria-label="메뉴 열기" aria-expanded="false" class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-slate-50 lg:hidden">
+        <span class="relative block h-3.5 w-4">
+          <span id="bar1" class="absolute left-0 top-0 h-0.5 w-4 rounded bg-slate-800 transition-transform duration-300"></span>
+          <span id="bar2" class="absolute left-0 top-1.5 h-0.5 w-4 rounded bg-slate-800 transition-opacity duration-300"></span>
+          <span id="bar3" class="absolute left-0 top-3 h-0.5 w-4 rounded bg-slate-800 transition-transform duration-300"></span>
+        </span>
       </button>
     </div>
   </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#about">소개</a>
-    <a href="#skills">기술 역량</a>
-    <a href="#projects">대표 연구</a>
-    <a href="#career">경력·학력</a>
-    <a href="#publications">논문·특허</a>
-    <a href="#training">교육·자격</a>
-    <a href="#contact">연락처</a>
-  </div>
+
+  <!-- Mobile menu -->
+  <nav id="mobileMenu" class="hidden flex-col border-b border-slate-200 bg-white px-5 pb-4 lg:hidden">
+    <a href="#about" class="border-b border-slate-100 py-3 text-lg font-semibold text-slate-800">소개</a>
+    <a href="#skills" class="border-b border-slate-100 py-3 text-lg font-semibold text-slate-800">기술 역량</a>
+    <a href="#projects" class="border-b border-slate-100 py-3 text-lg font-semibold text-slate-800">대표 연구</a>
+    <a href="#career" class="border-b border-slate-100 py-3 text-lg font-semibold text-slate-800">경력·학력</a>
+    <a href="#publications" class="border-b border-slate-100 py-3 text-lg font-semibold text-slate-800">논문·특허</a>
+    <a href="#training" class="border-b border-slate-100 py-3 text-lg font-semibold text-slate-800">교육·자격</a>
+    <a href="#contact" class="py-3 text-lg font-semibold text-slate-800">연락처</a>
+  </nav>
 </header>
 
 <!-- ================= HERO ================= -->
-<section class="hero" id="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <div class="eyebrow">Welcome to my portfolio</div>
-        <h1>유한나 (Hannah Yu)<span class="role-tag">Clinical Genomics Scientist</span></h1>
-        <p class="message">임상 유전체 분석과 중개 연구 분야에서 10년 이상의 연구 경험을 보유한 연구자입니다. WES·WGS 기반 변이 해석과 임상 보고서 작성부터 Oxford Nanopore 기반 초고정확도 시퀀싱 기술 개발(Advanced Science, IF 14.5 제1저자)까지, 연구와 임상을 연결하는 중개 연구 역량을 갖추고 있습니다.</p>
-        <div class="hero-actions">
-          <div class="hero-actions-row">
-            <a href="#projects" class="btn primary">대표 연구 보기 <span>&#8250;</span></a>
+<section id="hero" class="scroll-mt-20 bg-white py-14 lg:py-20">
+  <div class="container-custom">
+    <div class="grid grid-cols-1 items-center gap-6 lg:grid-cols-2 lg:gap-8">
+      <div class="text-center lg:text-left">
+        <div class="mb-3 inline-block text-lg font-bold text-brand-500">Welcome to my portfolio</div>
+        <h1 class="mb-5 text-4xl font-extrabold leading-snug text-slate-900 sm:text-5xl lg:text-6xl">
+          유한나 (Hannah Yu)
+          <span class="mt-2 block text-[0.5em] font-extrabold text-accent2-500">Clinical Genomics Scientist</span>
+        </h1>
+        <p class="mx-auto mb-8 max-w-[560px] text-xl text-slate-500 lg:mx-0">
+          임상 유전체 분석과 중개 연구 분야에서 10년 이상의 연구 경험을 보유한 연구자입니다. WES·WGS 기반 변이 해석과 임상 보고서 작성부터 Oxford Nanopore 기반 초고정확도 시퀀싱 기술 개발(Advanced Science, IF 14.5 제1저자)까지, 연구와 임상을 연결하는 중개 연구 역량을 갖추고 있습니다.
+        </p>
+        <div class="flex flex-col gap-3.5">
+          <div class="flex flex-wrap justify-center gap-3.5 lg:justify-start">
+            <a href="#projects" class="btn btn-primary">대표 연구 보기 <span>&#8250;</span></a>
             <a href="#contact" class="btn">연락하기</a>
           </div>
-          <div class="hero-actions-row">
+          <div class="flex flex-wrap justify-center gap-3.5 lg:justify-start">
             <a href="assets/유한나_국문이력서_2026.pdf" class="btn" download>&#128196; 국문 이력서</a>
             <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn" download>&#128196; English CV</a>
           </div>
         </div>
       </div>
-      <div class="hero-photo-col">
-        <div class="hero-photo-wrap">
-          <div class="hero-photo">
-            <img src="assets/profile.png" alt="유한나 (Hannah Yu) 프로필 사진">
+
+      <div class="order-first lg:order-last">
+        <div class="relative mx-auto h-[300px] w-[260px] sm:h-[360px] sm:w-[320px] lg:mx-0">
+          <div class="absolute -left-4 -top-4 h-full w-full rounded-[24px_24px_24px_130px] bg-brand-500"></div>
+          <div class="absolute -bottom-3 -right-3 h-16 w-16 rounded-full bg-accent2-500/10"></div>
+          <div class="relative z-10 h-full w-full overflow-hidden rounded-[24px_24px_24px_130px] shadow-2xl">
+            <img src="assets/profile.png" alt="유한나 (Hannah Yu) 프로필 사진" class="h-full w-full object-cover">
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="wrap worked-with">
-    <div class="wlabel">함께한 기관 (Worked With)</div>
-    <div class="worked-with-grid">
-      <div class="org">Samsung Medical Center</div>
-      <div class="org">3billion</div>
-      <div class="org">The Ohio State University</div>
-      <div class="org">KRISS · UST</div>
+  <div class="container-custom mt-12">
+    <div class="mb-4 text-base font-bold uppercase tracking-wider text-slate-500">함께한 기관 (Worked With)</div>
+    <div class="grid grid-cols-2 gap-3.5 sm:grid-cols-4">
+      <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 text-center text-lg font-bold text-slate-500 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-500 hover:shadow-lg">Samsung Medical Center</div>
+      <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 text-center text-lg font-bold text-slate-500 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-500 hover:shadow-lg">3billion</div>
+      <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 text-center text-lg font-bold text-slate-500 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-500 hover:shadow-lg">The Ohio State University</div>
+      <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 text-center text-lg font-bold text-slate-500 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-500 hover:shadow-lg">KRISS · UST</div>
     </div>
   </div>
 </section>
 
 <!-- ================= ABOUT ================= -->
-<section id="about">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">About</div>
-      <h2>소개</h2>
+<section id="about" class="scroll-mt-20 bg-slate-50 py-16 lg:py-24">
+  <div class="container-custom">
+    <div class="mx-auto mb-12 max-w-xl text-center" data-aos="fade-up">
+      <div class="mb-3 inline-block text-lg font-bold text-brand-500">About</div>
+      <h2 class="mb-3 text-[33px] font-extrabold text-slate-900 sm:text-[40px]">소개</h2>
     </div>
-    <div class="about-grid">
-      <div class="about-text">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="space-y-3.5 text-lg text-slate-500">
         <p>삼성서울병원에서는 암 환자 검체 기반 WES 및 RNA sequencing을 수행하며 임상 연구와 NGS workflow를 경험하였고, 쓰리빌리언에서는 임상 유전 과학자로서 WES/WGS 기반 변이 해석, 임상 보고서 작성 및 의료진과의 협업을 통해 희귀질환 진단을 지원하였습니다.</p>
         <p>미국 오하이오주립대학교에서는 Oxford Nanopore 기반 high-fidelity sequencing 기술을 개발하여 Advanced Science(IF 14.5) 제1저자 논문을 발표하였으며, 글로벌 공동연구 및 기술 개발 경험을 보유하고 있습니다.</p>
         <p>NGS 실험, 유전체 분석, 분자생물학, 임상 유전체 해석을 아우르는 전문성을 바탕으로 연구와 임상을 연결하는 중개 연구 역량을 갖추고 있습니다.</p>
       </div>
-      <div class="about-facts">
-        <div class="fact-card">
-          <div class="label">학위</div>
-          <div class="value">이학박사<br>생물분석과학과 (UST)</div>
+      <div class="grid grid-cols-2 gap-3.5">
+        <div class="card">
+          <div class="mb-2 text-base font-bold uppercase tracking-wide text-slate-500">학위</div>
+          <div class="text-lg font-bold leading-snug text-slate-900">이학박사<br>생물분석과학과 (UST)</div>
         </div>
-        <div class="fact-card">
-          <div class="label">경력</div>
-          <div class="value">10년 이상<br>임상유전체 · NGS · 중개연구</div>
+        <div class="card">
+          <div class="mb-2 text-base font-bold uppercase tracking-wide text-slate-500">경력</div>
+          <div class="text-lg font-bold leading-snug text-slate-900">10년 이상<br>임상유전체 · NGS · 중개연구</div>
         </div>
-        <div class="fact-card">
-          <div class="label">대표 성과</div>
-          <div class="value">Advanced Science<br>(IF 14.5) 제1저자</div>
+        <div class="card">
+          <div class="mb-2 text-base font-bold uppercase tracking-wide text-slate-500">대표 성과</div>
+          <div class="text-lg font-bold leading-snug text-slate-900">Advanced Science<br>(IF 14.5) 제1저자</div>
         </div>
-        <div class="fact-card">
-          <div class="label">전문 분야</div>
-          <div class="value">WES/WGS 변이해석<br>Nanopore 시퀀싱</div>
+        <div class="card">
+          <div class="mb-2 text-base font-bold uppercase tracking-wide text-slate-500">전문 분야</div>
+          <div class="text-lg font-bold leading-snug text-slate-900">WES/WGS 변이해석<br>Nanopore 시퀀싱</div>
         </div>
       </div>
     </div>
@@ -790,44 +205,44 @@
 </section>
 
 <!-- ================= SKILLS ================= -->
-<section id="skills">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Skills</div>
-      <h2>기술 역량</h2>
+<section id="skills" class="scroll-mt-20 bg-white py-16 lg:py-24">
+  <div class="container-custom">
+    <div class="mx-auto mb-12 max-w-xl text-center" data-aos="fade-up">
+      <div class="mb-3 inline-block text-lg font-bold text-brand-500">Skills</div>
+      <h2 class="mb-3 text-[33px] font-extrabold text-slate-900 sm:text-[40px]">기술 역량</h2>
     </div>
-    <div class="skill-groups">
-      <div class="skill-group">
-        <h4>Sequencing &amp; Genomics</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">WGS/WES</span>
-          <span class="skill-tag">RNA Sequencing</span>
-          <span class="skill-tag">Long-read Sequencing (ONT, PacBio)</span>
-          <span class="skill-tag">Variant Analysis</span>
-          <span class="skill-tag">Clinical Genomics</span>
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="card">
+        <h4 class="mb-3.5 text-base font-bold uppercase tracking-wide text-slate-500">Sequencing &amp; Genomics</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">WGS/WES</span>
+          <span class="chip">RNA Sequencing</span>
+          <span class="chip">Long-read Sequencing (ONT, PacBio)</span>
+          <span class="chip">Variant Analysis</span>
+          <span class="chip">Clinical Genomics</span>
         </div>
       </div>
-      <div class="skill-group">
-        <h4>Clinical Genomics &amp; Bioinformatics</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">WES / WGS Analysis</span>
-          <span class="skill-tag">Variant Interpretation</span>
-          <span class="skill-tag">Clinical Reporting</span>
-          <span class="skill-tag">Cancer &amp; Rare Disease Genomics</span>
-          <span class="skill-tag">AI-assisted Literature Review</span>
+      <div class="card">
+        <h4 class="mb-3.5 text-base font-bold uppercase tracking-wide text-slate-500">Clinical Genomics &amp; Bioinformatics</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">WES / WGS Analysis</span>
+          <span class="chip">Variant Interpretation</span>
+          <span class="chip">Clinical Reporting</span>
+          <span class="chip">Cancer &amp; Rare Disease Genomics</span>
+          <span class="chip">AI-assisted Literature Review</span>
         </div>
       </div>
-      <div class="skill-group">
-        <h4>Molecular Biology</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">NGS library prep</span>
-          <span class="skill-tag">Cloning</span>
-          <span class="skill-tag">Site-directed mutagenesis</span>
-          <span class="skill-tag">qPCR / dPCR</span>
-          <span class="skill-tag">HRM</span>
-          <span class="skill-tag">Bisulfite conversion</span>
-          <span class="skill-tag">In vitro methylation</span>
-          <span class="skill-tag">CRISPR/Cas9</span>
+      <div class="card">
+        <h4 class="mb-3.5 text-base font-bold uppercase tracking-wide text-slate-500">Molecular Biology</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">NGS library prep</span>
+          <span class="chip">Cloning</span>
+          <span class="chip">Site-directed mutagenesis</span>
+          <span class="chip">qPCR / dPCR</span>
+          <span class="chip">HRM</span>
+          <span class="chip">Bisulfite conversion</span>
+          <span class="chip">In vitro methylation</span>
+          <span class="chip">CRISPR/Cas9</span>
         </div>
       </div>
     </div>
@@ -835,312 +250,687 @@
 </section>
 
 <!-- ================= PROJECTS ================= -->
-<section id="projects">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Featured Research</div>
-      <h2>대표 연구</h2>
-      <p>카드를 클릭하면 상세 내용을 볼 수 있습니다.</p>
+<section id="projects" class="scroll-mt-20 bg-slate-50 py-16 lg:py-24">
+  <div class="container-custom">
+    <div class="mx-auto mb-12 max-w-xl text-center" data-aos="fade-up">
+      <div class="mb-3 inline-block text-lg font-bold text-brand-500">Featured Research</div>
+      <h2 class="mb-3 text-[33px] font-extrabold text-slate-900 sm:text-[40px]">대표 연구</h2>
+      <p class="text-lg text-slate-500">카드를 클릭하면 상세 내용을 볼 수 있습니다.</p>
     </div>
-    <div class="project-grid" id="projectGrid"></div>
+    <div id="projectGrid" class="flex flex-wrap justify-center gap-6"></div>
   </div>
 </section>
 
 <!-- ================= CAREER / EDUCATION ================= -->
-<section id="career">
-  <div class="wrap">
-    <div class="section-head">
+<section id="career" class="scroll-mt-20 bg-white py-16 lg:py-24">
+  <div class="container-custom">
+    <div class="mx-auto mb-12 max-w-xl text-center" data-aos="fade-up">
       <div class="eyebrow">Career &amp; Education</div>
-      <h2>경력 · 학력</h2>
+      <h2 class="section-title">경력 · 학력</h2>
     </div>
 
-    <div class="timeline-subtitle">주요 경력 (Career Highlights)</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="role"><a href="https://3billion.io/" target="_blank" rel="noopener">쓰리빌리언</a> · 임상 유전 과학자</div>
-        <div class="period">2025.11 – 2026.02</div>
-        <ul class="achievements">
-          <li>유전체 검사(WES/WGS)의 변이 해석 및 보고서 작성</li>
-          <li>AI를 활용하여 희귀질환 관련 유전자 및 변이에 대한 문헌 조사 및 임상적 해석</li>
-          <li>의료진 및 임상진단팀과의 커뮤니케이션을 통한 증상-유전정보 통합 분석</li>
-          <li>유전진단 인공지능 모델 고도화 연구 (AI engineer, bioinformatics 전문가들과 공동 연구)</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="role"><a href="http://www.samsunghospital.com/home/future/rnd/innovation/current.do" target="_blank" rel="noopener">삼성서울병원</a> · 박사 연구원</div>
-        <div class="period">2025.03 – 2025.09</div>
-        <ul class="achievements">
-          <li>암 환자 샘플 기반 유전체 시퀀싱 실험 설계 및 수행</li>
-          <li>임상 시료에서 핵산 추출, 품질 평가, 시퀀싱 라이브러리 제작</li>
-          <li>NovaSeq X Plus 및 AVITI24 플랫폼을 활용한 WES 및 전사체 시퀀싱 수행</li>
-          <li>생물정보학팀과 협업하여 데이터 처리, 분석 및 해석 진행</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="role"><a href="https://vet.osu.edu/research/center-retrovirus-research" target="_blank" rel="noopener">오하이오주립대학교</a> · 박사후 연구원</div>
-        <div class="period">2016.04 – 2024.07</div>
-        <ul class="achievements">
-          <li>Oxford Nanopore 기반의 high-fidelity, long-range single-molecule sequencing 기법 개발</li>
-          <li>Circular long-read DNA constructs 및 twin random barcode 생성 기술 개발</li>
-          <li>개발한 기술을 활용한 환자 및 폐수 내 SARS-CoV-2 변이 검출 및 모니터링</li>
-          <li>새로운 해양 RNA 바이러스 발견</li>
-          <li>항레트로바이러스제(ART) 처리된 HIV-1 변이 프로파일링, HIV-1 변이체 in vitro 선별</li>
-          <li>CRISPR/Cas9 기반 유전체 편집</li>
-          <li>HIV-1 RNA 유전체 수준의 후성유전학적 변형 패턴 규명</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="role"><a href="https://www.ust.ac.kr/prog/major/kor/sub03_03_01/campusMajor.do" target="_blank" rel="noopener">과학기술연합대학원대학교(UST)</a>/<a href="https://www.kriss.re.kr/departmentWeb/department2deptsView.es?mid=a11003010100&kd2_code=1000028" target="_blank" rel="noopener">한국표준과학연구원(KRISS)</a> 캠퍼스 · 박사과정 연구원</div>
-        <div class="period">2010.09 – 2016.02</div>
-        <ul class="achievements">
-          <li>유전자 계량을 위한 기준 측정법 설계 및 검증</li>
-          <li>dNMP/NMP, human genomic DNA, miRNA, gene methylation, 16S rDNA 등 인증표준물질(CRM) 개발</li>
-          <li>NGS 기반 실험 전략 수립 및 샘플 라이브러리 제작/시퀀싱 수행 (Illumina MiSeq)</li>
-          <li>첨단 분석 장비 운용: NGS(DNA 메틸화·전사체·metagenome 분석), CE(DNA 메틸화, dNMP/NMP 분석, 핵산 정량), MALDI-TOF(단백질 identification, genotyping), FACS(세포 분류, 단일 세포 분석)</li>
-          <li>분자생물학 연구기술 숙련: cloning, site-directed mutagenesis, qPCR/dPCR, HRM, bisulfite conversion, in vitro methylation, NGS library preparation</li>
-        </ul>
+    <div class="mb-6 text-2xl font-extrabold text-accent2-500">주요 경력 (Career Highlights)</div>
+    <div class="relative mb-16">
+      <div class="absolute inset-y-0 left-6 hidden w-px bg-slate-200 lg:left-1/2 lg:block lg:-translate-x-1/2"></div>
+      <div class="absolute inset-y-0 left-6 w-px bg-slate-200 lg:hidden"></div>
+      <div class="flex flex-col gap-16 lg:gap-12">
+
+        <!-- 1. 쓰리빌리언 (left) -->
+        <div class="relative flex gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+          <div class="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-brand-500 text-base font-extrabold text-white shadow-md ring-4 ring-white lg:order-2 lg:col-start-2 lg:h-24 lg:w-24 lg:text-xl">2026</div>
+          <div class="lg:order-1 lg:col-start-1 lg:pr-2 lg:text-right">
+            <div class="mb-1 text-xl font-bold text-slate-900"><a href="https://3billion.io/" target="_blank" rel="noopener" class="text-brand-600 hover:underline">쓰리빌리언</a> · 임상 유전 과학자</div>
+            <div class="mb-2 text-xl text-slate-500">2025.11 – 2026.02</div>
+            <ul class="space-y-2 text-lg text-slate-500">
+              <li>WES/WGS 변이 해석 및 임상 보고서 작성</li>
+              <li>AI 기반 유전진단 모델 고도화 연구</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. 삼성서울병원 (right) -->
+        <div class="relative flex gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+          <div class="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-accent2-500 text-base font-extrabold text-white shadow-md ring-4 ring-white lg:order-2 lg:col-start-2 lg:h-24 lg:w-24 lg:text-xl">2025</div>
+          <div class="lg:order-3 lg:col-start-3 lg:pl-2">
+            <div class="mb-1 text-xl font-bold text-slate-900"><a href="http://www.samsunghospital.com/home/future/rnd/innovation/current.do" target="_blank" rel="noopener" class="text-brand-600 hover:underline">삼성서울병원</a> · 박사 연구원</div>
+            <div class="mb-2 text-xl text-slate-500">2025.03 – 2025.09</div>
+            <ul class="space-y-2 text-lg text-slate-500">
+              <li>암 환자 유전체 시퀀싱(WES·전사체) 수행</li>
+              <li>NovaSeq X Plus·AVITI24 플랫폼 활용</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. 오하이오주립대학교 (left) -->
+        <div class="relative flex gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+          <div class="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-brand-500 text-base font-extrabold text-white shadow-md ring-4 ring-white lg:order-2 lg:col-start-2 lg:h-24 lg:w-24 lg:text-xl">2024</div>
+          <div class="lg:order-1 lg:col-start-1 lg:pr-2 lg:text-right">
+            <div class="mb-1 text-xl font-bold text-slate-900"><a href="https://vet.osu.edu/research/center-retrovirus-research" target="_blank" rel="noopener" class="text-brand-600 hover:underline">오하이오주립대학교</a> · 박사후 연구원</div>
+            <div class="mb-2 text-xl text-slate-500">2016.04 – 2024.07</div>
+            <ul class="space-y-2 text-lg text-slate-500">
+              <li>Oxford Nanopore 초고정확도 시퀀싱 기술 개발</li>
+              <li>SARS-CoV-2 변이 검출 및 신규 RNA 바이러스 발견</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. UST/KRISS (right) -->
+        <div class="relative flex gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+          <div class="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-accent2-500 text-base font-extrabold text-white shadow-md ring-4 ring-white lg:order-2 lg:col-start-2 lg:h-24 lg:w-24 lg:text-xl">2016</div>
+          <div class="lg:order-3 lg:col-start-3 lg:pl-2">
+            <div class="mb-1 text-xl font-bold text-slate-900"><a href="https://www.ust.ac.kr/prog/major/kor/sub03_03_01/campusMajor.do" target="_blank" rel="noopener" class="text-brand-600 hover:underline">UST</a>/<a href="https://www.kriss.re.kr/departmentWeb/department2deptsView.es?mid=a11003010100&kd2_code=1000028" target="_blank" rel="noopener" class="text-brand-600 hover:underline">KRISS</a> · 박사과정 연구원</div>
+            <div class="mb-2 text-xl text-slate-500">2010.09 – 2016.02</div>
+            <ul class="space-y-2 text-lg text-slate-500">
+              <li>유전자 계량 표준측정법(CRM) 개발</li>
+              <li>NGS 기반 실험 전략 수립 및 시퀀싱 수행</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <div class="timeline-subtitle">학력 (Education)</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="role"><a href="https://www.ust.ac.kr/prog/major/kor/sub03_03_01/campusMajor.do" target="_blank" rel="noopener">과학기술연합대학원대학교(UST)</a> 생물분석과학과 · 이학박사</div>
-        <div class="period">2010 – 2016</div>
-        <ul class="achievements">
-          <li>학위논문: 유전자 계량을 위한 기준 측정 방법 개발 — 유전자 메틸화, 유전자 발현, 세균 군집 프로파일링</li>
-          <li>지도교수: 양인철 교수</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="role"><a href="https://biology.cnu.ac.kr/biology/professor/professor.do?mode=view&key=LZStrEwBhEZzcGYg%20&pager.offset=0&pagerLimit=10" target="_blank" rel="noopener">충남대학교</a> 과학교육학과(생물전공) · 이학석사</div>
-        <div class="period">2006 – 2008</div>
-        <ul class="achievements">
-          <li>학위논문: 제브라피쉬에서 Farnesoid X Receptor (fxr) 유전자 분리</li>
-          <li>지도교수: 김철희 교수</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="role"><a href="https://www.handong.edu/kor/major/college/life-science/intro/" target="_blank" rel="noopener">한동대학교</a> 생명과학과 · 이학사</div>
-        <div class="period">2001 – 2006</div>
+    <div class="mb-6 text-2xl font-extrabold text-accent2-500">학력 (Education)</div>
+    <div class="relative">
+      <div class="absolute inset-y-0 left-6 hidden w-px bg-slate-200 lg:left-1/2 lg:block lg:-translate-x-1/2"></div>
+      <div class="absolute inset-y-0 left-6 w-px bg-slate-200 lg:hidden"></div>
+      <div class="flex flex-col gap-16 lg:gap-12">
+
+        <!-- 1. UST 박사 (left) -->
+        <div class="relative flex gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+          <div class="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-brand-500 text-base font-extrabold text-white shadow-md ring-4 ring-white lg:order-2 lg:col-start-2 lg:h-24 lg:w-24 lg:text-xl">2016</div>
+          <div class="lg:order-1 lg:col-start-1 lg:pr-2 lg:text-right">
+            <div class="mb-1 text-xl font-bold text-slate-900"><a href="https://www.ust.ac.kr/prog/major/kor/sub03_03_01/campusMajor.do" target="_blank" rel="noopener" class="text-brand-600 hover:underline">과학기술연합대학원대학교(UST)</a> · 이학박사</div>
+            <div class="mb-2 text-xl text-slate-500">생물분석과학과 · 2010 – 2016</div>
+            <ul class="space-y-2 text-lg text-slate-500">
+              <li>유전자 계량 표준 측정 방법 개발</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. 충남대 석사 (right) -->
+        <div class="relative flex gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+          <div class="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-accent2-500 text-base font-extrabold text-white shadow-md ring-4 ring-white lg:order-2 lg:col-start-2 lg:h-24 lg:w-24 lg:text-xl">2008</div>
+          <div class="lg:order-3 lg:col-start-3 lg:pl-2">
+            <div class="mb-1 text-xl font-bold text-slate-900"><a href="https://biology.cnu.ac.kr/biology/professor/professor.do?mode=view&key=LZStrEwBhEZzcGYg%20&pager.offset=0&pagerLimit=10" target="_blank" rel="noopener" class="text-brand-600 hover:underline">충남대학교</a> · 이학석사</div>
+            <div class="mb-2 text-xl text-slate-500">과학교육학과(생물전공) · 2006 – 2008</div>
+            <ul class="space-y-2 text-lg text-slate-500">
+              <li>제브라피쉬 fxr 유전자 분리 연구</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. 한동대 학사 (left) -->
+        <div class="relative flex gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+          <div class="relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-brand-500 text-base font-extrabold text-white shadow-md ring-4 ring-white lg:order-2 lg:col-start-2 lg:h-24 lg:w-24 lg:text-xl">2006</div>
+          <div class="lg:order-1 lg:col-start-1 lg:pr-2 lg:text-right">
+            <div class="mb-1 text-xl font-bold text-slate-900"><a href="https://www.handong.edu/kor/major/college/life-science/intro/" target="_blank" rel="noopener" class="text-brand-600 hover:underline">한동대학교</a> · 이학사</div>
+            <div class="text-xl text-slate-500">생명과학과 · 2001 – 2006</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= PUBLICATIONS / PATENTS / FUNDING / CONFERENCE ================= -->
-<section id="publications">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Research Output</div>
-      <h2>논문 · 특허 · 연구실적</h2>
+<section id="publications" class="scroll-mt-20 bg-slate-50 py-16 lg:py-24">
+  <div class="container-custom">
+    <div class="mx-auto mb-12 max-w-xl text-center" data-aos="fade-up">
+      <div class="mb-3 inline-block text-lg font-bold text-brand-500">Research Output</div>
+      <h2 class="mb-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">논문 · 특허 · 연구실적</h2>
     </div>
 
-    <div class="tabs" id="pubTabs">
-      <button class="tab-btn active" data-tab="pubs">논문 (18)</button>
+    <div id="pubTabs" data-aos="fade-up" data-aos-delay="100" class="mb-9 flex flex-wrap justify-center gap-2.5">
+      <button class="tab-btn is-active" data-tab="pubs">논문 (9)</button>
       <button class="tab-btn" data-tab="patents">특허 (5)</button>
       <button class="tab-btn" data-tab="funding">연구비</button>
       <button class="tab-btn" data-tab="conf">학회</button>
     </div>
 
     <!-- Publications -->
-    <div class="tab-panel active" id="tab-pubs">
-      <div class="pub-group-title">Published (peer-reviewed)</div>
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-title"><strong>Yu H</strong>, Golconda S, Xue D, Zhu M, Lee GE, Viola C, Dominguez-Huerta G, Bolduc B, Sullivan M, Kim S. CLAE: A High Fidelity Nanopore Sequencing Strategy for Read Level Viral Variant Detection and Environmental RNA Virus Discovery.</div>
-          <div class="pub-meta">Advanced Science (2025) Sep 11:305978. <a href="https://doi.org/10.1002/advs.202505978" target="_blank" rel="noopener">doi:10.1002/advs.202505978</a> · PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/40936099/" target="_blank" rel="noopener">40936099</a><span class="if-badge">IF 14.5</span></div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Baek A, Lee GE, Golconda S, Rayhan A, Manganaris A, Chen S, Tirumuru N, <strong>Yu H</strong>, et al. Single-molecule epitranscriptomic analysis of full-length HIV-1 RNAs reveals functional roles of site-specific m6As.</div>
-          <div class="pub-meta">Nature Microbiology (2024) May;9(5):1340-1355. PMCID: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11087264/" target="_blank" rel="noopener">PMC11087264</a><span class="if-badge">IF 28.3</span></div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Baek A, Rayhan A, Lee GE, Golconda S, <strong>Yu H</strong>, et al. Mapping m6A Sites on HIV-1 RNA Using Oligonucleotide LC-MS/MS.</div>
-          <div class="pub-meta">Methods Protoc. (2024) Jan 10;7(1). PMID: 38251200; PMCID: PMC10801558. <a href="https://doi.org/10.3390/mps7010007" target="_blank" rel="noopener">doi:10.3390/mps7010007</a><span class="if-badge">IF 2.4</span></div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Kim S, Shukla RK, <strong>Yu H</strong>, et al. CD3e-immunotoxin spares CD62Llo Tregs and reshapes organ-specific T-cell composition by preferentially depleting CD3ehi T cells.</div>
-          <div class="pub-meta">Front Immunol. (2022); 13:1011190. PMID: 36389741; PMCID: PMC9643874. <a href="https://doi.org/10.3389/fimmu.2022.1011190" target="_blank" rel="noopener">doi:10.3389/fimmu.2022.1011190</a><span class="if-badge">IF 8.8</span></div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Kim S, Shukla RK, Kim E, Cressman SG, <strong>Yu H</strong>, et al. Comparison of CD3e Antibody and CD3e-sZAP Immunotoxin Treatment in Mice Identifies sZAP as the Main Driver of Vascular Leakage.</div>
-          <div class="pub-meta">Biomedicines (2022), 10, 1221. <a href="https://doi.org/10.3390/biomedicines10061221" target="_blank" rel="noopener">doi:10.3390/biomedicines10061221</a><span class="if-badge">IF 6.0</span></div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Suryawanshi GW, Khamaikawin W, Wen J, Shimizu S, Arokium H, Xie Y, Wang E, Kim S, Choi H, Zhang C, <strong>Yu H</strong>, et al. The clonal repopulation of HSPC gene modified with anti-HIV-1 RNAi is not affected by preexisting HIV-1 infection.</div>
-          <div class="pub-meta">Science Advances (2020). <a href="https://doi.org/10.1126/sciadv.aay9206" target="_blank" rel="noopener">doi:10.1126/sciadv.aay9206</a><span class="if-badge">IF 13.1</span></div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title"><strong>Yu H</strong>, Hahn Y, Park SR, et al. Normalization of human RNA-seq experiments using chimpanzee RNA as a spike-in standard.</div>
-          <div class="pub-meta">Sci. Rep. (2016) · <a href="https://doi.org/10.1038/srep31923" target="_blank" rel="noopener">doi:10.1038/srep31923</a><span class="if-badge">IF 4.3</span></div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title"><strong>Yu H</strong>, Hahn Y, Yang I. Reference materials for calibration of analytical biases in quantification of DNA methylation.</div>
-          <div class="pub-meta">PLOS One (2015) · <a href="https://doi.org/10.1371/journal.pone.0137006" target="_blank" rel="noopener">doi:10.1371/journal.pone.0137006</a> · PMCID: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4569303/" target="_blank" rel="noopener">PMC4569303</a><span class="if-badge">IF 3.2</span></div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Kang MJ, <strong>Yu H</strong>, Kim SK, Park SR, Yang I. Quantification of trace-level DNA by real time whole genome amplification.</div>
-          <div class="pub-meta">PLOS One (2011) · <a href="https://doi.org/10.1371/journal.pone.0028661" target="_blank" rel="noopener">doi:10.1371/journal.pone.0028661</a><span class="if-badge">IF 3.2</span></div>
-        </div>
+    <div class="tab-panel" id="tab-pubs">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
       </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">CLAE: A High Fidelity Nanopore Sequencing Strategy for Read Level Viral Variant Detection and Environmental RNA Virus Discovery.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Advanced Science (2025) Sep 11:305978. IF 14.5</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2025
+        </div>
+        <a href="https://doi.org/10.1002/advs.202505978" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Single-molecule epitranscriptomic analysis of full-length HIV-1 RNAs reveals functional roles of site-specific m6As.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Nature Microbiology (2024) May;9(5):1340-1355. IF 28.3</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2024
+        </div>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11087264/" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Mapping m6A Sites on HIV-1 RNA Using Oligonucleotide LC-MS/MS.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Methods Protoc. (2024) Jan 10;7(1). IF 2.4</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2024
+        </div>
+        <a href="https://doi.org/10.3390/mps7010007" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">CD3e-immunotoxin spares CD62Llo Tregs and reshapes organ-specific T-cell composition by preferentially depleting CD3ehi T cells.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Front Immunol. (2022); 13:1011190. IF 8.8</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2022
+        </div>
+        <a href="https://doi.org/10.3389/fimmu.2022.1011190" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Comparison of CD3e Antibody and CD3e-sZAP Immunotoxin Treatment in Mice Identifies sZAP as the Main Driver of Vascular Leakage.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Biomedicines (2022), 10, 1221. IF 6.0</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2022
+        </div>
+        <a href="https://doi.org/10.3390/biomedicines10061221" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">The clonal repopulation of HSPC gene modified with anti-HIV-1 RNAi is not affected by preexisting HIV-1 infection.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Science Advances (2020). IF 13.1</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2020
+        </div>
+        <a href="https://doi.org/10.1126/sciadv.aay9206" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Normalization of human RNA-seq experiments using chimpanzee RNA as a spike-in standard.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Sci. Rep. (2016). IF 4.3</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2016
+        </div>
+        <a href="https://doi.org/10.1038/srep31923" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Reference materials for calibration of analytical biases in quantification of DNA methylation.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">PLOS One (2015). IF 3.2</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2015
+        </div>
+        <a href="https://doi.org/10.1371/journal.pone.0137006" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2v12h12V2H2z"/></svg>
+        Paper
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Quantification of trace-level DNA by real time whole genome amplification.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">PLOS One (2011). IF 3.2</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2011
+        </div>
+        <a href="https://doi.org/10.1371/journal.pone.0028661" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
     </div>
 
     <!-- Patents -->
-    <div class="tab-panel" id="tab-patents">
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-title">Yang I, <strong>Yu H</strong>, Yang HJ, Kim SK, Park SR. Quantitative analysis method using microorganism 16S rDNA gene having single nucleotide polymorphism.</div>
-          <div class="pub-meta">US Patent 10,253,378 (2019)</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Kim S, <strong>Yu H</strong>, Baek A. Methods of making and using tandem, twin barcode molecules.</div>
-          <div class="pub-meta">PCT/US2018/049203 (2018)</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Yang I, Kang MJ, <strong>Yu H</strong>, Park SR, Kim SK. Methods and kits for the quantification of nucleic acids.</div>
-          <div class="pub-meta">US 9,297,038 (2016)</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Yang I, <strong>Yu H</strong>, Yang H, Kim SK, Park SR. Bacterial 16s rDNA sequences with defined single nucleotide polymorphisms.</div>
-          <div class="pub-meta">PCT/KR2014/011040 (2014)</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Yang I, Kang MJ, <strong>Yu H</strong>, Park SR, Kim SK. Methods and kits for the quantification of nucleic acids.</div>
-          <div class="pub-meta">PCT/KR2011/008494 (2011)</div>
-        </div>
+    <div class="tab-panel hidden" id="tab-patents">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Patent
       </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Quantitative analysis method using microorganism 16S rDNA gene having single nucleotide polymorphism.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">US Patent 10,253,378</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2019
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Patent
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Methods of making and using tandem, twin barcode molecules.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">PCT/US2018/049203</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2018
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Patent
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Methods and kits for the quantification of nucleic acids.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">US 9,297,038</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2016
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Patent
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Bacterial 16s rDNA sequences with defined single nucleotide polymorphisms.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">PCT/KR2014/011040</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2014
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Patent
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Methods and kits for the quantification of nucleic acids.</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">PCT/KR2011/008494</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2011
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
     </div>
 
     <!-- Funding -->
-    <div class="tab-panel" id="tab-funding">
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-title">"On-site, high-fidelity target sequencing and absolute quantitation for HIV-1 surveillance"</div>
-          <div class="pub-meta">NHGRI R01 (PI: Kim S) · 2018 – 2024</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">"Virus in soils: key modulators of microbiomes and nutrient cycling?"</div>
-          <div class="pub-meta">Department of Energy (PI: Sullivan M; Co-I: Kim S) · 2019 – 2023</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">"High-accuracy, long-range sequencing for HIV genotyping"</div>
-          <div class="pub-meta">NHGRI R21 (PI: Kim S) · 2018 – 2022</div>
-        </div>
+    <div class="tab-panel hidden" id="tab-funding">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Grant
       </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">On-site, high-fidelity target sequencing and absolute quantitation for HIV-1 surveillance</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">NHGRI R01 (PI: Kim S)</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2018-2024
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Grant
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Virus in soils: key modulators of microbiomes and nutrient cycling?</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Department of Energy (PI: Sullivan M; Co-I: Kim S)</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2019-2023
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Grant
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">High-accuracy, long-range sequencing for HIV genotyping</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">NHGRI R21 (PI: Kim S)</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2018-2022
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
     </div>
 
     <!-- Conferences -->
-    <div class="tab-panel" id="tab-conf">
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-title">Advanced Genomic Technology Development Meeting, Boston, USA</div>
-          <div class="pub-meta">2019 · Short talk</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Nanopore Community Meeting, San Francisco, USA</div>
-          <div class="pub-meta">2018 · Poster</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Nanopore Community Meeting, New York, USA</div>
-          <div class="pub-meta">2016 · Poster</div>
-        </div>
-        <div class="pub-item">
-          <div class="pub-title">Nucleic Acid Summit, San Francisco, USA</div>
-          <div class="pub-meta">2013 · Poster</div>
-        </div>
+    <div class="tab-panel hidden" id="tab-conf">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        Conference
       </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Advanced Genomic Technology Development Meeting, Boston, USA</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Short talk</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2019
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        Conference
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Nanopore Community Meeting, San Francisco, USA</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Poster</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2018
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        Conference
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Nanopore Community Meeting, New York, USA</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Poster</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2016
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+    <div data-aos="fade-up" class="group flex h-full flex-col rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div class="mb-4 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <svg class="h-3.5 w-3.5 fill-current text-slate-700" viewBox="0 0 24 24"><path fill="currentColor" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        Conference
+      </div>
+      <h3 class="mb-2 text-[17px] font-bold leading-snug text-slate-900 line-clamp-3">Nucleic Acid Summit, San Francisco, USA</h3>
+      <p class="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3 flex-1">Poster</p>
+      <div class="mt-auto flex items-center justify-between border-t border-slate-50 pt-4">
+        <div class="flex items-center gap-1.5 text-[12px] font-medium text-slate-500">
+          <svg class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          2013
+        </div>
+        <a href="#" target="_blank" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e1f5fe] text-[#0288d1] transition group-hover:bg-[#b3e5fc]">
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 </section>
 
 <!-- ================= TRAINING / CERTIFICATION ================= -->
-<section id="training">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Continuing Education</div>
-      <h2>AI &amp; Data Science Training · Certification</h2>
+<section id="training" class="scroll-mt-20 bg-white py-16 lg:py-24">
+  <div class="container-custom">
+    <div class="mx-auto mb-12 max-w-xl text-center" data-aos="fade-up">
+      <div class="mb-3 inline-block text-lg font-bold text-brand-500">Continuing Education</div>
+      <h2 class="mb-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">AI &amp; Data Science Training · Certification</h2>
     </div>
 
-    <div class="timeline-subtitle">AI &amp; Data Science Training</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="role">AI 융합 데이터 분석 전문인력 양성과정 (WISET × AWS)</div>
-        <div class="period">2026.04 – 2026.05</div>
-        <ul class="achievements">
-          <li>Python(Google Colab) 기반 데이터 분석, 데이터 수집·전처리, API 활용</li>
-          <li>데이터 시각화 및 대시보드 구현</li>
-          <li>AWS 기반 데이터 분석 프로젝트 및 멘토링</li>
-        </ul>
+    
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4" data-aos="fade-up" data-aos-delay="100">
+      
+      <!-- Card 1 -->
+      <div class="relative flex h-[340px] flex-col overflow-hidden rounded-[32px] bg-brand-50 p-7 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
+        <!-- Bubbles -->
+        <div class="absolute -bottom-8 -left-8 h-40 w-40 rounded-full bg-white/40 blur-2xl"></div>
+        <div class="absolute right-0 top-1/4 h-24 w-24 rounded-full bg-white/30 blur-xl"></div>
+        
+        <div class="relative z-10 flex h-full flex-col">
+          <div class="mb-2 inline-block rounded-full bg-slate-200/50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-slate-600 w-fit">Training</div>
+          <h3 class="mb-2 text-[21px] font-extrabold leading-tight text-slate-800">
+            AI 융합 데이터 분석 전문인력 양성
+          </h3>
+          <div class="mb-3 text-[13px] font-bold text-slate-600">WISET × AWS | 2026.04 – 05</div>
+          <ul class="mb-4 list-disc space-y-1.5 pl-4 text-[13px] leading-relaxed text-slate-600/90">
+            <li>Python 기반 데이터 분석, 전처리, API 활용</li>
+            <li>데이터 시각화 및 대시보드 구현</li>
+            <li>AWS 기반 데이터 분석 프로젝트</li>
+          </ul>
+          
+          <div class="mt-auto flex items-center justify-between">
+            <span class="text-[14px] font-extrabold text-slate-700">Read More</span>
+            <a href="#" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-slate-800 shadow-sm transition hover:scale-110">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="role">생성형 AI 전문강사 양성과정 (WISET × AWS)</div>
-        <div class="period">2026.06 – 2026.07</div>
-        <ul class="achievements">
-          <li>프롬프트 엔지니어링, RAG, MCP, Agentic AI, AI Coding Agent</li>
-          <li>AWS 기반 생성형 AI 활용</li>
-          <li>AI 교육 콘텐츠 개발 및 팀 프로젝트 수행</li>
-        </ul>
+
+      <!-- Card 2 -->
+      <div class="relative flex h-[340px] flex-col overflow-hidden rounded-[32px] bg-accent2-50 p-7 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
+        <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/60 blur-2xl"></div>
+        
+        <div class="relative z-10 flex h-full flex-col">
+          <div class="mb-2 inline-block rounded-full bg-slate-200/50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-slate-600 w-fit">Training</div>
+          <h3 class="mb-2 text-[21px] font-extrabold leading-tight text-slate-800">
+            생성형 AI 전문강사 양성과정
+          </h3>
+          <div class="mb-3 text-[13px] font-bold text-slate-600">WISET × AWS | 2026.06 – 07</div>
+          <ul class="mb-4 list-disc space-y-1.5 pl-4 text-[13px] leading-relaxed text-slate-600/90">
+            <li>프롬프트 엔지니어링, RAG, Agentic AI</li>
+            <li>AWS 기반 생성형 AI 활용</li>
+            <li>AI 교육 콘텐츠 개발 프로젝트</li>
+          </ul>
+          
+          <div class="mt-auto flex items-center justify-between">
+            <span class="text-[14px] font-extrabold text-slate-700">Read More</span>
+            <a href="#" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-slate-800 shadow-sm transition hover:scale-110">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="timeline-item">
-        <div class="role">AI 활용 실무 훈련 (WISET × 상상력집단)</div>
-        <div class="period">2026.07 – 2026.08 (수강 중)</div>
-        <ul class="achievements">
-          <li>ChatGPT·Claude·Gemini 활용 업무 생산성 향상</li>
-          <li>Python·Colab 기반 데이터 분석, AI 업무 자동화</li>
-          <li>연구·실험 데이터 분석 프로젝트, GitHub·Notion 포트폴리오 제작</li>
-        </ul>
+
+      <!-- Card 3 -->
+      <div class="relative flex h-[340px] flex-col overflow-hidden rounded-[32px] bg-brand-50 p-7 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
+        <div class="absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-white/40 blur-2xl"></div>
+        
+        <div class="relative z-10 flex h-full flex-col">
+          <div class="mb-2 inline-block rounded-full bg-slate-200/50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-slate-600 w-fit">Training</div>
+          <h3 class="mb-2 text-[21px] font-extrabold leading-tight text-slate-800">
+            AI 활용 실무 훈련
+          </h3>
+          <div class="mb-3 text-[13px] font-bold text-slate-600">WISET × 상상력집단 | 2026.07 – 08</div>
+          <ul class="mb-4 list-disc space-y-1.5 pl-4 text-[13px] leading-relaxed text-slate-600/90">
+            <li>ChatGPT·Claude·Gemini 업무 자동화</li>
+            <li>Python·Colab 기반 데이터 분석</li>
+            <li>연구 데이터 분석 및 포트폴리오 제작</li>
+          </ul>
+          
+          <div class="mt-auto flex items-center justify-between">
+            <span class="text-[14px] font-extrabold text-slate-700">Read More</span>
+            <a href="#" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-slate-800 shadow-sm transition hover:scale-110">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+            </a>
+          </div>
+        </div>
       </div>
+
+      <!-- Card 4 (Certification) -->
+      <div class="relative flex h-[340px] flex-col overflow-hidden rounded-[32px] bg-accent2-50 p-7 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
+        <div class="absolute -left-8 top-10 h-32 w-32 rounded-full bg-white/60 blur-xl"></div>
+        
+        <div class="relative z-10 flex h-full flex-col">
+          <div class="mb-2 inline-block rounded-full bg-slate-200/50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-slate-600 w-fit">Certification</div>
+          <h3 class="mb-2 mt-2 text-[21px] font-extrabold leading-tight text-slate-800">
+            데이터분석준전문가 (ADsP)
+          </h3>
+          <div class="mb-4 text-[13px] font-bold text-slate-600">한국데이터산업진흥원</div>
+          
+          <p class="mb-4 text-[13px] leading-relaxed text-slate-600/90">
+            데이터 이해 및 데이터 분석 기획, 데이터 분석 역량을 검정하는 국가공인 민간자격증. (2026.06.05 취득)
+          </p>
+          
+          <div class="mt-auto flex items-center justify-between">
+            <span class="text-[14px] font-extrabold text-slate-700">Read More</span>
+            <a href="#" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-slate-800 shadow-sm transition hover:scale-110">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="timeline-subtitle">Certification</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="role">데이터분석준전문가 (ADsP)</div>
-        <div class="period">2026.06.05 취득</div>
-      </div>
-    </div>
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact">
-  <div class="wrap contact-section">
-    <div class="section-head">
-      <div class="eyebrow">Contact</div>
-      <p>연구·채용 관련 문의는 이메일 또는 LinkedIn으로 편하게 연락 주세요.</p>
+<section id="contact" class="scroll-mt-20 bg-slate-50 py-16 text-center lg:py-24">
+  <div class="container-custom">
+    <div class="mx-auto mb-8 max-w-xl">
+      <div class="mb-3 inline-block text-lg font-bold text-brand-500">Contact</div>
+      <p class="text-lg text-slate-500">연구·채용 관련 문의는 이메일 또는 LinkedIn으로 편하게 연락 주세요.</p>
     </div>
-    <div class="contact-buttons">
-      <a href="mailto:yuhannah82@gmail.com" class="btn primary">&#128231; yuhannah82@gmail.com</a>
+    <div class="flex flex-wrap justify-center gap-3.5" data-aos="fade-up" data-aos-delay="100">
+      <a href="mailto:yuhannah82@gmail.com" class="btn btn-primary">&#128231; yuhannah82@gmail.com</a>
       <a href="https://www.linkedin.com/in/hannah-yu-9020ab268/?skipRedirect=true" target="_blank" rel="noopener" class="btn">&#128188; LinkedIn</a>
       <a href="https://github.com/hannahyu-source/portfolio" target="_blank" rel="noopener" class="btn">&#128187; GitHub</a>
       <a href="https://scholar.google.com/citations?hl=ko&user=pQJStZ0AAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener" class="btn">&#127891; Google Scholar</a>
     </div>
-    <div class="contact-buttons" style="margin-top:14px;">
-      <a href="assets/유한나_국문이력서_2026.pdf" class="btn small" download>&#128196; 국문 이력서 다운로드</a>
-      <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn small" download>&#128196; English CV 다운로드</a>
+    <div class="mt-4 flex flex-wrap justify-center gap-3.5">
+      <a href="assets/유한나_국문이력서_2026.pdf" class="btn !px-4 !py-2.5 !text-base" download>&#128196; 국문 이력서 다운로드</a>
+      <a href="assets/HannahYu_CurriculumVitae_2026_Eng.pdf" class="btn !px-4 !py-2.5 !text-base" download>&#128196; English CV 다운로드</a>
     </div>
   </div>
 </section>
 
-<footer>
+<footer class="border-t border-slate-200 bg-white py-9 text-center text-base text-slate-500">
   유한나 (Hannah Yu) &middot; 2026
 </footer>
 
 <!-- ================= PROJECT MODAL ================= -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box" role="dialog" aria-modal="true">
-    <button class="modal-close" id="modalClose" type="button">&#10005;</button>
-    <h3 id="modalTitle"></h3>
-    <div class="modal-sub" id="modalSub"></div>
-    <div class="modal-section-title">개요</div>
-    <p id="modalDesc"></p>
-    <div class="modal-section-title">기술 스택</div>
-    <div class="project-stack" id="modalStack"></div>
-    <div class="modal-section-title">주요 성과</div>
-    <ul id="modalAchievements"></ul>
-    <div class="modal-section-title">관련 링크</div>
-    <p id="modalLink"></p>
+<div id="modalOverlay" class="fixed inset-0 z-[200] hidden items-center justify-center bg-slate-900/45 p-6 backdrop-blur-sm">
+  <div id="modalBox" class="relative max-h-[85vh] w-full max-w-xl translate-y-4 overflow-y-auto rounded-3xl bg-white p-7 opacity-0 shadow-2xl transition duration-300 sm:p-9">
+    <button id="modalClose" type="button" class="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 transition hover:border-brand-500 hover:text-brand-500">&#10005;</button>
+    <h3 id="modalTitle" class="mb-2 pr-10 text-2xl font-extrabold text-slate-900"></h3>
+    <div id="modalSub" class="mb-5 text-base text-slate-500"></div>
+    <div class="mb-2 mt-5 text-base font-bold uppercase tracking-wide text-brand-600">개요</div>
+    <p id="modalDesc" class="text-lg text-slate-500"></p>
+    <div class="mb-2 mt-5 text-base font-bold uppercase tracking-wide text-brand-600">기술 스택</div>
+    <div id="modalStack" class="flex flex-wrap gap-1.5"></div>
+    <div class="mb-2 mt-5 text-base font-bold uppercase tracking-wide text-brand-600">주요 성과</div>
+    <ul id="modalAchievements" class="achv-list"></ul>
+    <div class="mb-2 mt-5 text-base font-bold uppercase tracking-wide text-brand-600">관련 링크</div>
+    <p id="modalLink" class="text-lg font-bold text-brand-600"></p>
   </div>
 </div>
 
@@ -1148,22 +938,30 @@
   // ---------- Mobile menu ----------
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-  });
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-  }));
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+
+  function setMenu(open) {
+    mobileMenu.classList.toggle('hidden', !open);
+    mobileMenu.classList.toggle('flex', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    bar1.classList.toggle('translate-y-[6px]', open);
+    bar1.classList.toggle('rotate-45', open);
+    bar2.classList.toggle('opacity-0', open);
+    bar3.classList.toggle('-translate-y-[6px]', open);
+    bar3.classList.toggle('-rotate-45', open);
+  }
+  hamburger.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
   // ---------- Publications tabs ----------
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('is-active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      btn.classList.add('is-active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
     });
   });
 
@@ -1181,7 +979,7 @@
         '항레트로바이러스제(ART) 처리 HIV-1 변이 프로파일링',
         'Advanced Science (IF 14.5) 제1저자 논문 게재'
       ],
-      linkHtml: '<a href="https://doi.org/10.1002/advs.202505978" target="_blank" rel="noopener">doi:10.1002/advs.202505978</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40936099/" target="_blank" rel="noopener">PubMed</a>'
+      linkHtml: '<a href="https://doi.org/10.1002/advs.202505978" target="_blank" rel="noopener" class="hover:underline">doi:10.1002/advs.202505978</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40936099/" target="_blank" rel="noopener" class="hover:underline">PubMed</a>'
     },
     {
       title: '임상 유전체 변이 해석<br>& AI 진단 모델 고도화',
@@ -1194,7 +992,7 @@
         '의료진·임상진단팀과의 증상-유전정보 통합 분석',
         'AI engineer, bioinformatics 전문가와 공동으로 유전진단 AI 모델 고도화 연구 수행'
       ],
-      linkHtml: '<a href="https://3billion.io/" target="_blank" rel="noopener">쓰리빌리언 (3billion) 공식 웹사이트</a> · <span class="placeholder">프로젝트 상세는 비공개 사내 자료</span>'
+      linkHtml: '<a href="https://3billion.io/" target="_blank" rel="noopener" class="hover:underline">쓰리빌리언 (3billion) 공식 웹사이트</a> · <span class="text-slate-400 font-normal">프로젝트 상세는 비공개 사내 자료</span>'
     },
     {
       title: '유전자 계량을 위한<br>표준 측정 방법 개발',
@@ -1207,20 +1005,21 @@
         'PLOS One, Scientific Reports 등 논문 3편 게재',
         '16S rDNA, DNA 메틸화, miRNA 등 CRM 다수 개발'
       ],
-      linkHtml: '<a href="https://doi.org/10.1371/journal.pone.0137006" target="_blank" rel="noopener">doi:10.1371/journal.pone.0137006</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4569303/" target="_blank" rel="noopener">PMC4569303</a>'
+      linkHtml: '<a href="https://doi.org/10.1371/journal.pone.0137006" target="_blank" rel="noopener" class="hover:underline">doi:10.1371/journal.pone.0137006</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4569303/" target="_blank" rel="noopener" class="hover:underline">PMC4569303</a>'
     }
   ];
 
   const projectGrid = document.getElementById('projectGrid');
   projects.forEach((p, idx) => {
     const card = document.createElement('div');
-    card.className = 'project-card reveal';
+    card.className = 'flex w-full max-w-[380px] flex-1 basis-[300px] cursor-pointer flex-col gap-3.5 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-brand-500 hover:shadow-lg';
+    card.setAttribute('data-aos', 'fade-up');
     card.innerHTML = `
-      <div class="project-thumb">${p.thumb}</div>
-      <h3>${p.title}</h3>
-      <div class="desc">${p.desc}</div>
-      <div class="project-stack">${p.stack.map(s => `<span class="stack-chip">${s}</span>`).join('')}</div>
-      <div class="project-more">자세히 보기 →</div>
+      <div class="flex min-h-[90px] items-center justify-center rounded-xl border border-slate-200 bg-gradient-to-br from-brand-50 to-accent2-50 p-4 text-center text-2xl font-bold leading-snug text-brand-600">${p.thumb}</div>
+      <h3 class="text-center text-xl font-bold text-slate-900">${p.title}</h3>
+      <div class="flex-1 text-lg text-slate-500">${p.desc}</div>
+      <div class="flex flex-wrap gap-1.5">${p.stack.map(s => `<span class="chip-muted">${s}</span>`).join('')}</div>
+      <div class="text-base font-bold text-brand-500">자세히 보기 →</div>
     `;
     card.addEventListener('click', () => openModal(idx));
     projectGrid.appendChild(card);
@@ -1228,6 +1027,7 @@
 
   // ---------- Modal ----------
   const modalOverlay = document.getElementById('modalOverlay');
+  const modalBox = document.getElementById('modalBox');
   const modalTitle = document.getElementById('modalTitle');
   const modalSub = document.getElementById('modalSub');
   const modalDesc = document.getElementById('modalDesc');
@@ -1240,15 +1040,23 @@
     modalTitle.innerHTML = p.title.replace(/<br>/g, ' ');
     modalSub.textContent = p.period;
     modalDesc.textContent = p.desc;
-    modalStack.innerHTML = p.stack.map(s => `<span class="stack-chip">${s}</span>`).join('');
+    modalStack.innerHTML = p.stack.map(s => `<span class="chip-muted">${s}</span>`).join('');
     modalAchievements.innerHTML = p.achievements.map(a => `<li>${a}</li>`).join('');
     modalLink.innerHTML = p.linkHtml;
-    modalOverlay.classList.add('open');
+    modalOverlay.classList.remove('hidden');
+    modalOverlay.classList.add('flex');
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      modalBox.classList.remove('opacity-0', 'translate-y-4');
+    });
   }
   function closeModal() {
-    modalOverlay.classList.remove('open');
+    modalBox.classList.add('opacity-0', 'translate-y-4');
     document.body.style.overflow = '';
+    setTimeout(() => {
+      modalOverlay.classList.add('hidden');
+      modalOverlay.classList.remove('flex');
+    }, 200);
   }
   document.getElementById('modalClose').addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', (e) => {
@@ -1258,21 +1066,17 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  // ---------- Scroll reveal ----------
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  document.querySelectorAll('.fact-card, .skill-group, .timeline-item, .pub-item').forEach(el => {
-    el.classList.add('reveal');
-    observer.observe(el);
-  });
 </script>
 
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    offset: 50
+  });
+</script>
 </body>
 </html>
