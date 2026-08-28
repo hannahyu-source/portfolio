@@ -960,6 +960,7 @@
       title: '임상 유전체 데이터 생산<br>& 변이 해석',
       period: '삼성서울병원 · 쓰리빌리언 · 2025.03 – 2026.02',
       thumb: '데이터 생산부터<br>임상 해석까지',
+      cardDesc: '삼성서울병원에서 암 환자 검체 기반 WES·RNA sequencing으로 임상 유전체 데이터를 직접 생산하고, 쓰리빌리언에서 그 데이터의 WES/WGS 변이 해석과 임상 보고서 작성을 수행했습니다. 검체 처리와 시퀀싱에서 변이 해석까지 임상 유전체 워크플로우 전 과정을 경험했습니다.',
       desc: '삼성서울병원에서 암 환자 검체를 대상으로 WES와 RNA sequencing을 수행하여 임상 유전체 데이터를 직접 생산하고, NovaSeq X Plus와 AVITI24 플랫폼을 운용했습니다. 이어 쓰리빌리언에서는 그 데이터를 해석하는 단계를 맡아 WES/WGS 기반 변이 해석과 임상 보고서 작성을 수행했습니다. 검체 처리와 시퀀싱에서 변이 해석, 임상 보고서에 이르는 임상 유전체 워크플로우 전 과정을 직접 경험했으며, 의료진·임상진단팀과 협업하고 AI 엔지니어·생물정보학 전문가와 유전진단 인공지능 모델 고도화 연구에 참여했습니다.',
       stack: ['WES · RNA-seq', 'NovaSeq X Plus · AVITI24', '변이 해석 · 임상 보고서', '유전진단 AI'],
       achievements: [
@@ -994,7 +995,7 @@
     card.innerHTML = `
       <div class="flex min-h-[90px] items-center justify-center rounded-xl border border-slate-200 bg-gradient-to-br from-brand-50 to-accent2-50 p-4 text-center text-2xl font-bold leading-snug text-brand-600">${p.thumb}</div>
       <h3 class="text-center text-xl font-bold text-slate-900">${p.title}</h3>
-      <div class="flex-1 text-lg text-slate-500">${p.desc}</div>
+      <div class="flex-1 text-lg text-slate-500">${p.cardDesc || p.desc}</div>
       <div class="flex flex-wrap gap-1.5">${p.stack.map(s => `<span class="chip-muted">${s}</span>`).join('')}</div>
       <div class="text-base font-bold text-brand-500">자세히 보기 →</div>
     `;
