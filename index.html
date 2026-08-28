@@ -6,66 +6,7 @@
 <title>유한나 (Hannah Yu) | Clinical Genomics Scientist</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brand: {
-            50: '#eaf6f8',
-            100: '#d3edf1',
-            400: '#2ba0b6',
-            500: '#0f8fa6',
-            600: '#0b6f82',
-            700: '#085764'
-          },
-          accent2: {
-            50: '#fdf1e7',
-            100: '#fbe3cd',
-            400: '#ea9a5f',
-            500: '#e2823f',
-            600: '#c96a2c'
-          }
-        },
-        fontFamily: {
-          sans: ['Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Segoe UI', 'system-ui', '-apple-system', 'sans-serif']
-        },
-        maxWidth: {
-          container: '1440px'
-        }
-      }
-    }
-  };
-</script>
-<style type="text/tailwindcss">
-  html { scroll-behavior: smooth; }
-  body { word-break: keep-all; overflow-wrap: break-word; }
-
-  @layer components {
-    .container-custom { @apply mx-auto w-full max-w-container px-5 sm:px-8; }
-    .eyebrow { @apply mb-3 inline-block text-[19px] font-bold text-brand-500; }
-    .section-title { @apply mb-3 text-[38px] font-extrabold text-slate-900 sm:text-5xl; }
-    .card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-lg sm:p-6; }
-    .chip { @apply inline-flex items-center rounded-full border border-slate-200 bg-brand-50 px-3 py-1 text-base font-bold text-brand-600; }
-    .chip-muted { @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-sm font-bold text-slate-500; }
-    .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-lg font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600 hover:shadow-md; }
-    .btn-primary { @apply border-brand-500 bg-brand-500 text-white shadow-[0_10px_26px_rgba(15,143,166,0.28)] hover:bg-brand-600 hover:border-brand-600 hover:text-white; }
-    .nav-link { @apply text-lg font-semibold text-slate-500 transition hover:text-brand-500; }
-    .icon-btn { @apply flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 transition hover:border-brand-500 hover:bg-brand-50 hover:text-brand-500; }
-    .tab-btn { @apply rounded-full border border-slate-200 bg-white px-3 py-2.5 text-lg font-bold text-slate-500 transition sm:px-5; }
-    .tab-btn.is-active { @apply border-brand-500 bg-brand-500 text-white shadow-sm; }
-    .timeline-card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-brand-500 hover:shadow-lg sm:p-6; }
-    .achv-list { @apply list-disc space-y-1.5 pl-5 text-lg text-slate-500; }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
-    }
-    .animate-float { animation: float 4s ease-in-out infinite; }
-  }
-</style>
+<link rel="stylesheet" href="assets/tailwind.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body class="font-sans leading-relaxed text-slate-900 antialiased">

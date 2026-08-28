@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  html { scroll-behavior: smooth; }
+  body { word-break: keep-all; overflow-wrap: break-word; }
+
+  @layer components {
+    .container-custom { @apply mx-auto w-full max-w-container px-5 sm:px-8; }
+    .eyebrow { @apply mb-3 inline-block text-[19px] font-bold text-brand-500; }
+    .section-title { @apply mb-3 text-[38px] font-extrabold text-slate-900 sm:text-5xl; }
+    .card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:shadow-lg sm:p-6; }
+    .chip { @apply inline-flex items-center rounded-full border border-slate-200 bg-brand-50 px-3 py-1 text-base font-bold text-brand-600; }
+    .chip-muted { @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-sm font-bold text-slate-500; }
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-lg font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600 hover:shadow-md; }
+    .btn-primary { @apply border-brand-500 bg-brand-500 text-white shadow-[0_10px_26px_rgba(15,143,166,0.28)] hover:bg-brand-600 hover:border-brand-600 hover:text-white; }
+    .nav-link { @apply text-lg font-semibold text-slate-500 transition hover:text-brand-500; }
+    .icon-btn { @apply flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 transition hover:border-brand-500 hover:bg-brand-50 hover:text-brand-500; }
+    .tab-btn { @apply rounded-full border border-slate-200 bg-white px-3 py-2.5 text-lg font-bold text-slate-500 transition sm:px-5; }
+    .tab-btn.is-active { @apply border-brand-500 bg-brand-500 text-white shadow-sm; }
+    .timeline-card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-brand-500 hover:shadow-lg sm:p-6; }
+    .achv-list { @apply list-disc space-y-1.5 pl-5 text-lg text-slate-500; }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    .animate-float { animation: float 4s ease-in-out infinite; }
+  }
